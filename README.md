@@ -1,4 +1,4 @@
-# DIWE Tech Challenge - Junior Back-end Developer
+# DIWE Challenge - Jr. Back-end Developer
 
 My solution to [**DIWE**](https://diwe.com.br/)'s [technical challenge for the Junior
 Back-end Developer position](https://github.com/diwe-engineering/challenge-backend-jr),
