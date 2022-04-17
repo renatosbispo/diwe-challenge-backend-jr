@@ -15,6 +15,8 @@ for the project to allow for the tracking of its progress.
 
 - [Problem Domain](https://github.com/renatosbispo/diwe-challenge-backend-jr#problem-domain)
 - [Database Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#database-structure)
+  - [Suggested Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#suggested-structure)
+  - [My Interpretation of the Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#suggested-structure#my-interpretation-of-the-structure)
 - [Acknowledgments](https://github.com/renatosbispo/diwe-challenge-backend-jr#acknowledgments)
 
 ## Problem Domain
@@ -70,7 +72,7 @@ The challenge specifications described the following entities and their attribut
   - **created_at**: required, timestamp
   - **updated_at**: required, timestamp
 
-### My Interpretation of The Structure
+### My Interpretation of the Structure
 
 It's quite obvious what the entities `User` and `Financial Entry` represent. However, that's not the case for the entities `Status` and `Type`, at least not at first glance.
 
