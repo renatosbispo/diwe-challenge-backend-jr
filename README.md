@@ -14,6 +14,7 @@ for the project to allow for the tracking of its progress.
 ## Table of Contents
 
 - [Problem Domain](https://github.com/renatosbispo/diwe-challenge-backend-jr#problem-domain)
+- [Acknowledgments](https://github.com/renatosbispo/diwe-challenge-backend-jr#acknowledgments)
 
 ## Problem Domain
 
@@ -33,3 +34,7 @@ There are **two** main reasons for that:
    system geared towards a company, for example.
 2. It seems to fit better the database structure suggested by the challenge,
    as detailed below.
+
+## Acknowledgments
+
+The fine people at [**DIWE**](https://diwe.com.br/) gave me **explicit permission** to host this project on a public repository so I could include it in my portfolio. For that alone, and regardless of the result of this selection process, I would like to express my profound gratitude, especially to [Maicon](https://www.linkedin.com/in/maicon-gracioli-passos-02849438/) and [MV](https://www.linkedin.com/in/mvbassalobre/).
