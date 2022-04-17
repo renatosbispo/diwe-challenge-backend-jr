@@ -14,6 +14,7 @@ for the project to allow for the tracking of its progress.
 ## Table of Contents
 
 - [Problem Domain](https://github.com/renatosbispo/diwe-challenge-backend-jr#problem-domain)
+- [Database Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#database-structure)
 - [Acknowledgments](https://github.com/renatosbispo/diwe-challenge-backend-jr#acknowledgments)
 
 ## Problem Domain
@@ -34,6 +35,10 @@ There are **two** main reasons for that:
    system geared towards a company, for example.
 2. It seems to fit better the database structure suggested by the challenge,
    as detailed below.
+
+## Database Structure
+
+🚧 **Under construction!** 🚧
 
 ## Acknowledgments
 
