@@ -11,6 +11,10 @@ consists of building a **REST API** to serve data to a financial management syst
 I have also created a public [**Trello board**](https://trello.com/b/gNnSkVn0/diwe-challenge-jr-back-end-developer)
 for the project to allow for the tracking of its progress.
 
+## Table of Contents
+
+- [Problem Domain](https://github.com/renatosbispo/diwe-challenge-backend-jr#problem-domain)
+
 ## Problem Domain
 
 As stated before, the challenge consists of building a REST API to serve data to
