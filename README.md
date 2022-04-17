@@ -38,7 +38,45 @@ There are **two** main reasons for that:
 
 ## Database Structure
 
-🚧 **Under construction!** 🚧
+In this section, I describe the database structure of the project and present some considerations about it.
+
+### Suggested Structure
+
+The challenge specifications described the following entities and their attributes:
+
+- **User:**
+  - **id:** auto increment, integer
+  - **full_name:** required, string (120)
+  - **email**: required, string (200)
+  - **password**: required, string (200)
+  - **created_at**: required, timestamp
+  - **updated_at**: required, timestamp
+
+- **Status:**
+  - **id**: auto increment, integer
+  - **name**: required, string (100)
+
+- **Type:**
+  - **id**: auto increment, integer
+  - **name**: required, string (100)
+
+- **Financial Entry:**
+  - **id**: auto increment, integer
+  - **status_id**: integer, FK (Status)
+  - **user_id**: integer, FK (User)
+  - **type_id**: integer, FK (Type)
+  - **amount**: required, integer (a value like 10.42 should be stored as 1042)
+  - **description**: required, string (255)
+  - **created_at**: required, timestamp
+  - **updated_at**: required, timestamp
+
+### My Interpretation of The Structure
+
+It's quite obvious what the entities `User` and `Financial Entry` represent. However, that's not the case for the entities `Status` and `Type`, at least not at first glance.
+
+So based on the research I did and on the approach I took (as described in the [Problem Domain](https://github.com/renatosbispo/diwe-challenge-backend-jr#problem-domain) section), I decided to interpret `Status` as being one of two possible values, `paid` or `unpaid`, while `Type` as being either `income` or `expense`.
+
+This seems to fit well within the context of a personal finance management platform and doesn't overcomplicate the problem.
 
 ## Acknowledgments
 
