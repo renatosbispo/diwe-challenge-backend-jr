@@ -22,11 +22,12 @@ for the project to allow for the tracking of its progress.
 - [Project Decisions](https://github.com/renatosbispo/diwe-challenge-backend-jr#project-decisions)
   - [Architecture](https://github.com/renatosbispo/diwe-challenge-backend-jr#architecture)
   - [Practices](https://github.com/renatosbispo/diwe-challenge-backend-jr#practices)
-  - [Technologies](https://github.com/renatosbispo/diwe-challenge-backend-jr#technologies)
-- [Setup](https://github.com/renatosbispo/diwe-challenge-backend-jr#setup)
-- [Usage](https://github.com/renatosbispo/diwe-challenge-backend-jr#usage)
-- [Testing](https://github.com/renatosbispo/diwe-challenge-backend-jr#testing)
+  - [Technologies (coming soon)](https://github.com/renatosbispo/diwe-challenge-backend-jr#technologies)
+- [Setup (coming soon)](https://github.com/renatosbispo/diwe-challenge-backend-jr#setup)
+- [Usage (coming soon)](https://github.com/renatosbispo/diwe-challenge-backend-jr#usage)
+- [Testing (coming soon)](https://github.com/renatosbispo/diwe-challenge-backend-jr#testing)
 - [Acknowledgments](https://github.com/renatosbispo/diwe-challenge-backend-jr#acknowledgments)
+- [License](https://github.com/renatosbispo/diwe-challenge-backend-jr#acknowledgments#license)
 
 ## Problem Domain
 
@@ -181,3 +182,7 @@ The API follows a three-layer architecture (not three-tier exactly, as this is m
 ## Acknowledgments
 
 The fine people at [**DIWE**](https://diwe.com.br/) gave me **explicit permission** to host this project on a public repository so I could include it in my portfolio. For that alone, and regardless of the result of this selection process, I would like to express my profound gratitude, especially to [Maicon](https://www.linkedin.com/in/maicon-gracioli-passos-02849438/) and [MV](https://www.linkedin.com/in/mvbassalobre/).
+
+## License
+
+This project uses the [**MIT**](https://github.com/renatosbispo/diwe-challenge-backend-jr/blob/main/LICENSE) license, whose conditions only require the preservation of copyright and license notices. For more information, check the [full text](https://github.com/renatosbispo/diwe-challenge-backend-jr/blob/main/LICENSE) of the license.
