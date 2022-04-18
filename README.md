@@ -15,6 +15,10 @@ for the project to allow for the tracking of its progress.
 
 - [Problem Domain](https://github.com/renatosbispo/diwe-challenge-backend-jr#problem-domain)
 - [Database Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#database-structure)
+  - [Suggested Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#suggested-structure)
+  - [My Interpretation of the Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#suggested-structure#my-interpretation-of-the-structure)
+  - [Normalization](https://github.com/renatosbispo/diwe-challenge-backend-jr#normalization)
+  - [Additional Considerations](https://github.com/renatosbispo/diwe-challenge-backend-jr#additional-considerations)
 - [Acknowledgments](https://github.com/renatosbispo/diwe-challenge-backend-jr#acknowledgments)
 
 ## Problem Domain
@@ -38,7 +42,61 @@ There are **two** main reasons for that:
 
 ## Database Structure
 
-🚧 **Under construction!** 🚧
+In this section, I describe the database structure of the project and present some considerations about it.
+
+### Suggested Structure
+
+The challenge specification described the following entities and their attributes:
+
+- **User:**
+  - **id:** auto increment, integer
+  - **full_name:** required, string (120)
+  - **email**: required, string (200)
+  - **password**: required, string (200)
+  - **created_at**: required, timestamp
+  - **updated_at**: required, timestamp
+
+- **Status:**
+  - **id**: auto increment, integer
+  - **name**: required, string (100)
+
+- **Type:**
+  - **id**: auto increment, integer
+  - **name**: required, string (100)
+
+- **Financial Entry:**
+  - **id**: auto increment, integer
+  - **status_id**: integer, FK (Status)
+  - **user_id**: integer, FK (User)
+  - **type_id**: integer, FK (Type)
+  - **amount**: required, integer (a value like 10.42 should be stored as 1042)
+  - **description**: required, string (255)
+  - **created_at**: required, timestamp
+  - **updated_at**: required, timestamp
+
+### My Interpretation of the Structure
+
+It's quite obvious what the entities `User` and `Financial Entry` represent. However, that's not the case for the entities `Status` and `Type`, at least not at first glance.
+
+So based on the research I did and on the approach I took (as described in the [Problem Domain](https://github.com/renatosbispo/diwe-challenge-backend-jr#problem-domain) section), I decided to interpret `Status` as being one of two possible values, `paid` or `unpaid`, while `Type` as being either `income` or `expense`.
+
+This seems to fit well within the context of a personal finance management platform and doesn't overcomplicate the problem.
+
+### Normalization
+
+🚧 Under construction. 🚧
+
+### Additional Considerations
+
+One important aspect that seems to be missing from this suggested database structure is the entity `Account`, which would represent an essential concept in any financial management system.
+
+However, adding that entity to the suggested structure would create a few problems:
+
+- Additional data structure complexity
+- Additional endpoints (at least `GET /accounts` and `POST /accounts`)
+- Additional business rules (e.g., perhaps a user should not be able to create a financial entry of the `expense` type whose value is greater than the available balance in the relevant account).
+
+So for the sake of simplicity and to make sure I would be able to meet the agreed deadline, I decided to keep the suggested data structure as it is.
 
 ## Acknowledgments
 
