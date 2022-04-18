@@ -23,6 +23,9 @@ for the project to allow for the tracking of its progress.
   - [Architecture](https://github.com/renatosbispo/diwe-challenge-backend-jr#architecture)
   - [Practices](https://github.com/renatosbispo/diwe-challenge-backend-jr#practices)
   - [Technologies](https://github.com/renatosbispo/diwe-challenge-backend-jr#technologies)
+- [Setup](https://github.com/renatosbispo/diwe-challenge-backend-jr#setup)
+- [Usage](https://github.com/renatosbispo/diwe-challenge-backend-jr#usage)
+- [Testing](https://github.com/renatosbispo/diwe-challenge-backend-jr#testing)
 - [Acknowledgments](https://github.com/renatosbispo/diwe-challenge-backend-jr#acknowledgments)
 
 ## Problem Domain
@@ -161,7 +164,19 @@ The API follows a three-layer architecture (not three-tier exactly, as this is m
 
 ### Technologies
 
-Coming soon.
+🚧 Coming soon. 🚧
+
+## Setup
+
+🚧 Coming soon. 🚧
+
+## Usage
+
+🚧 Coming soon. 🚧
+
+## Testing
+
+🚧 Coming soon. 🚧
 
 ## Acknowledgments
 
