@@ -144,13 +144,24 @@ The API follows a three-layer architecture (not three-tier exactly, as this is m
 
 #### Rationale
 
-- It will contribute to a faster development process because this is a familiar architecture for me
+- It contributes to a faster development process because this is a familiar architecture for me
 - It helps to keep the code base organized
 - If properly implemented, it favors a loose coupling between the layers.
 
 ### Practices
 
+- **Integration tests** because:
+
+  - They will serve as a single source of truth for the API's functionality
+  - I agree with Kent C. Dodds' article where he states that integration tests:
+    > [...] strike a great balance on the trade-offs between confidence and speed/expense.
+
+- **TDD:** because it should simplify code and provide quick feedback during development.
+- **POO:** mostly for practicing this paradigm and the application of **SOLID** principles.
+
 ### Technologies
+
+Coming soon.
 
 ## Acknowledgments
 
