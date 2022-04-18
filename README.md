@@ -19,6 +19,10 @@ for the project to allow for the tracking of its progress.
   - [My Interpretation of the Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#my-interpretation-of-the-structure)
   - [Normalization](https://github.com/renatosbispo/diwe-challenge-backend-jr#normalization)
   - [Additional Considerations](https://github.com/renatosbispo/diwe-challenge-backend-jr#additional-considerations)
+- [Project Decisions](https://github.com/renatosbispo/diwe-challenge-backend-jr#project-decisions)
+  - [Architecture](https://github.com/renatosbispo/diwe-challenge-backend-jr#architecture)
+  - [Practices](https://github.com/renatosbispo/diwe-challenge-backend-jr#practices)
+  - [Technologies](https://github.com/renatosbispo/diwe-challenge-backend-jr#technologies)
 - [Acknowledgments](https://github.com/renatosbispo/diwe-challenge-backend-jr#acknowledgments)
 
 ## Problem Domain
@@ -49,6 +53,7 @@ In this section, I describe the database structure of the project and present so
 The challenge specification described the following entities and their attributes:
 
 - **User:**
+
   - **id:** auto increment, integer
   - **full_name:** required, string (120)
   - **email**: required, string (200)
@@ -57,10 +62,12 @@ The challenge specification described the following entities and their attribute
   - **updated_at**: required, timestamp
 
 - **Status:**
+
   - **id**: auto increment, integer
   - **name**: required, string (100)
 
 - **Type:**
+
   - **id**: auto increment, integer
   - **name**: required, string (100)
 
@@ -89,12 +96,14 @@ When I looked at the suggested database structure for the first time, I intuitiv
 The goal of this step was to ensure normalization up to the Third Normal Form, according to the following definitions compiled by me while studying this topic for the first time a few months ago:
 
 - **First Normal Form (1NF):**
+
   - Each field of a table may contain only one item
   - All of the data items in a column must mean the same thing (be of the same type)
   - Each row of the table must be unique
   - A table must have no repeating columns.
 
 - **Second Normal Form (2NF)**:
+
   - The data must be in 1NF
   - There must be no **partial dependencies**:
     - Each non-key field must be about the same thing as the primary key
@@ -118,6 +127,41 @@ However, adding that entity to the suggested structure would create a few proble
 - Additional business rules (e.g., perhaps a user should not be able to create a financial entry of the `expense` type whose value is greater than the available balance in the relevant account).
 
 So for the sake of simplicity and to make sure I would be able to meet the agreed deadline, I decided to keep the suggested data structure as it is.
+
+## Project Decisions
+
+In this section, I define the **architecture**, the **practices** and the **technologies** I decided to use in the project. I also lay out my **reasons** for these decisions.
+
+### Architecture
+
+#### Overview
+
+The API follows a three-layer architecture (not three-tier exactly, as this is more of a logical grouping rather than a physical separation of these components):
+
+- The **Model** layer: responsible for data handling
+- The **Service** layer: where most of the business rules are implemented
+- The **Controller/Middlewares** layer: responsible for handling the requests and responses.
+
+#### Rationale
+
+- It contributes to a faster development process because this is a familiar architecture for me
+- It helps to keep the code base organized
+- If properly implemented, it favors a loose coupling between the layers.
+
+### Practices
+
+- **Integration tests** because:
+
+  - They will serve as a single source of truth for the API's functionality
+  - I agree with **Kent C. Dodds**' [article](https://kentcdodds.com/blog/write-tests) where he states that integration tests:
+    > [...] strike a great balance on the trade-offs between confidence and speed/expense.
+
+- **TDD:** because it should simplify code and provide quick feedback during development.
+- **POO:** mostly for practicing this paradigm and the application of **SOLID** principles.
+
+### Technologies
+
+Coming soon.
 
 ## Acknowledgments
 
