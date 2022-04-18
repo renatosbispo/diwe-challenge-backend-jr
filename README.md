@@ -17,6 +17,7 @@ for the project to allow for the tracking of its progress.
 - [Database Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#database-structure)
   - [Suggested Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#suggested-structure)
   - [My Interpretation of the Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#suggested-structure#my-interpretation-of-the-structure)
+  - [Normalization](https://github.com/renatosbispo/diwe-challenge-backend-jr#normalization)
   - [Additional Considerations](https://github.com/renatosbispo/diwe-challenge-backend-jr#additional-considerations)
 - [Acknowledgments](https://github.com/renatosbispo/diwe-challenge-backend-jr#acknowledgments)
 
@@ -81,15 +82,19 @@ So based on the research I did and on the approach I took (as described in the [
 
 This seems to fit well within the context of a personal finance management platform and doesn't overcomplicate the problem.
 
+### Normalization
+
+🚧 Under construction. 🚧
+
 ### Additional Considerations
 
 One important aspect that seems to be missing from this suggested database structure is the entity `Account`, which would represent an essential concept in any financial management system.
 
-However, adding that entity to the suggested model would create a few problems:
+However, adding that entity to the suggested structure would create a few problems:
 
 - Additional data structure complexity
 - Additional endpoints (at least `GET /accounts` and `POST /accounts`)
-- Additional business rules (e.g., a user should not be able to perform a transaction whose value is greater than the available balance in the relevant account).
+- Additional business rules (e.g., perhaps a user should not be able to create a financial entry of the `expense` type whose value is greater than the available balance in the relevant account).
 
 So for the sake of simplicity and to make sure I would be able to meet the agreed deadline, I decided to keep the suggested data structure as it is.
 
