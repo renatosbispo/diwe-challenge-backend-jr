@@ -16,7 +16,7 @@ for the project to allow for the tracking of its progress.
 - [Problem Domain](https://github.com/renatosbispo/diwe-challenge-backend-jr#problem-domain)
 - [Database Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#database-structure)
   - [Suggested Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#suggested-structure)
-  - [My Interpretation of the Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#suggested-structure#my-interpretation-of-the-structure)
+  - [My Interpretation of the Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#my-interpretation-of-the-structure)
   - [Normalization](https://github.com/renatosbispo/diwe-challenge-backend-jr#normalization)
   - [Additional Considerations](https://github.com/renatosbispo/diwe-challenge-backend-jr#additional-considerations)
 - [Acknowledgments](https://github.com/renatosbispo/diwe-challenge-backend-jr#acknowledgments)
