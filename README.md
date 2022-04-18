@@ -153,7 +153,7 @@ The API follows a three-layer architecture (not three-tier exactly, as this is m
 - **Integration tests** because:
 
   - They will serve as a single source of truth for the API's functionality
-  - I agree with Kent C. Dodds' article where he states that integration tests:
+  - I agree with **Kent C. Dodds**' [article](https://kentcdodds.com/blog/write-tests) where he states that integration tests:
     > [...] strike a great balance on the trade-offs between confidence and speed/expense.
 
 - **TDD:** because it should simplify code and provide quick feedback during development.
