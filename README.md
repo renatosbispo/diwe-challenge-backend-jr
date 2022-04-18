@@ -17,6 +17,7 @@ for the project to allow for the tracking of its progress.
 - [Database Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#database-structure)
   - [Suggested Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#suggested-structure)
   - [My Interpretation of the Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#suggested-structure#my-interpretation-of-the-structure)
+  - [Additional Considerations](https://github.com/renatosbispo/diwe-challenge-backend-jr#additional-considerations)
 - [Acknowledgments](https://github.com/renatosbispo/diwe-challenge-backend-jr#acknowledgments)
 
 ## Problem Domain
@@ -79,6 +80,18 @@ It's quite obvious what the entities `User` and `Financial Entry` represent. How
 So based on the research I did and on the approach I took (as described in the [Problem Domain](https://github.com/renatosbispo/diwe-challenge-backend-jr#problem-domain) section), I decided to interpret `Status` as being one of two possible values, `paid` or `unpaid`, while `Type` as being either `income` or `expense`.
 
 This seems to fit well within the context of a personal finance management platform and doesn't overcomplicate the problem.
+
+### Additional Considerations
+
+One important aspect that seems to be missing from this suggested database structure is the entity `Account`, which would represent an essential concept in any financial management system.
+
+However, adding that entity to the suggested model would create a few problems:
+
+- Additional data structure complexity
+- Additional endpoints (at least `GET /accounts` and `POST /accounts`)
+- Additional business rules (e.g., a user should not be able to perform a transaction whose value is greater than the available balance in the relevant account).
+
+So for the sake of simplicity and to make sure I would be able to meet the agreed deadline, I decided to keep the suggested data structure as it is.
 
 ## Acknowledgments
 
