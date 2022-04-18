@@ -46,7 +46,7 @@ In this section, I describe the database structure of the project and present so
 
 ### Suggested Structure
 
-The challenge specifications described the following entities and their attributes:
+The challenge specification described the following entities and their attributes:
 
 - **User:**
   - **id:** auto increment, integer
