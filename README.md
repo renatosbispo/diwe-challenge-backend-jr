@@ -84,7 +84,28 @@ This seems to fit well within the context of a personal finance management platf
 
 ### Normalization
 
-🚧 Under construction. 🚧
+When I looked at the suggested database structure for the first time, I intuitively concluded it was normalized, but I wanted to make sure. So I created a [**spreadsheet**](https://docs.google.com/spreadsheets/d/1pKhywY8Gzh49S9JklbxqQwmRfsi-p_731UUSxQYMels/edit?usp=sharing) with the entities, their attributes and a few values to conduct this analysis.
+
+The goal of this step was to ensure normalization up to the Third Normal Form, according to the following definitions compiled by me while studying this topic for the first time a few months ago:
+
+- **First Normal Form (1NF):**
+  - Each field of a table may contain only one item
+  - All of the data items in a column must mean the same thing (be of the same type)
+  - Each row of the table must be unique
+  - A table must have no repeating columns.
+
+- **Second Normal Form (2NF)**:
+  - The data must be in 1NF
+  - There must be no **partial dependencies**:
+    - Each non-key field must be about the same thing as the primary key
+    - Each table must contain data about only one type of thing.
+
+- **Third Normal Form (3NF):**
+  - The data must be in 2NF
+  - There must be no **transitive dependencies**:
+    - There is no other non-key attribute that would need to be changed in a table if another non-key attribute was changed.
+
+Although these definitions are not formal, they seemed to be good enough heuristics, especially for a simple structure like the one suggested for this challenge.
 
 ### Additional Considerations
 
