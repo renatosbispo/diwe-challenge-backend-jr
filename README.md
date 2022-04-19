@@ -134,7 +134,7 @@ So for the sake of simplicity and to make sure I would be able to meet the agree
 
 ## Project Decisions
 
-In this section, I define the **architecture**, the **practices** and the **technologies** I decided to use in the project. I also lay out my **reasons** for these decisions.
+In this section, I define the **architecture**, the **database**, the **practices** and the main **technologies** I decided to use in the project. I also lay out my **reasons** for these decisions.
 
 ### Architecture
 
@@ -152,6 +152,11 @@ The API follows a three-layer architecture (not three-tier exactly, as this is m
 - It helps to keep the code base organized
 - If properly implemented, it favors a loose coupling between the layers.
 
+### Database
+
+- **MySQL as DBMS:** for being familiar with it
+- **ORM instead of a simple driver:** because I believe it's more important to apply as many good practices as possible instead of showing I can write SQL queries, despite the initial size of the project.
+
 ### Practices
 
 - **Integration tests** because:
@@ -160,12 +165,17 @@ The API follows a three-layer architecture (not three-tier exactly, as this is m
   - I agree with **Kent C. Dodds**' [article](https://kentcdodds.com/blog/write-tests) where he states that integration tests:
     > [...] strike a great balance on the trade-offs between confidence and speed/expense.
 
-- **TDD:** because it should simplify code and provide quick feedback during development.
+- **TDD:** because it should simplify code and provide quick feedback during development
 - **POO:** mostly for practicing this paradigm and the application of **SOLID** principles.
 
 ### Technologies
 
-🚧 Coming soon. 🚧
+- **Node.js**: because it's the ecosystem where I have the most experience
+- **Typescript**: for preventing a lot of bugs even before the application runs
+- **Prisma.js**: because I want to test this ORM that became so popular, supports many relational databases (and **MongoDB**) and promises to be simpler and faster to use than its alternatives.
+- **Express.js**: because it's the framework I'm most familiar with
+- **Helmet.js**: an Express middleware that sets multiple HTTP headers for additional security
+- **Docker/Docker Compose**: to provide a consistent environment across all workflow stages (development, testing, and deployment).
 
 ## Setup
 
