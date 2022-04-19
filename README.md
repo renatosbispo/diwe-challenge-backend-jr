@@ -180,15 +180,15 @@ The API follows a three-layer architecture (not three-tier exactly, as this is m
 
 ## Setup
 
-🚧 Coming soon. 🚧
+Coming soon.
 
 ## Usage
 
-🚧 Coming soon. 🚧
+Coming soon.
 
 ## Testing
 
-🚧 Coming soon. 🚧
+Coming soon.
 
 ## Acknowledgments
 
