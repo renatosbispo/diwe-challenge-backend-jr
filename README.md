@@ -21,8 +21,8 @@ for the project to allow for the tracking of its progress.
   - [Additional Considerations](https://github.com/renatosbispo/diwe-challenge-backend-jr#additional-considerations)
 - [Project Decisions](https://github.com/renatosbispo/diwe-challenge-backend-jr#project-decisions)
   - [Architecture](https://github.com/renatosbispo/diwe-challenge-backend-jr#architecture)
-  - [Database](https://github.com/renatosbispo/diwe-challenge-backend-jr#database)
   - [Practices](https://github.com/renatosbispo/diwe-challenge-backend-jr#practices)
+  - [Database](https://github.com/renatosbispo/diwe-challenge-backend-jr#database)
   - [Technologies](https://github.com/renatosbispo/diwe-challenge-backend-jr#technologies)
 - [Setup (coming soon)](https://github.com/renatosbispo/diwe-challenge-backend-jr#setup)
 - [Usage (coming soon)](https://github.com/renatosbispo/diwe-challenge-backend-jr#usage)
@@ -153,11 +153,6 @@ The API follows a three-layer architecture (not three-tier exactly, as this is m
 - It helps to keep the code base organized
 - If properly implemented, it favors a loose coupling between the layers.
 
-### Database
-
-- **MySQL as DBMS:** for being familiar with it
-- **ORM instead of a simple driver:** because I believe it's more important to apply as many good practices as possible instead of showing I can write SQL queries, despite the initial size of the project.
-
 ### Practices
 
 - **Integration tests** because:
@@ -168,6 +163,11 @@ The API follows a three-layer architecture (not three-tier exactly, as this is m
 
 - **TDD:** because it should simplify code and provide quick feedback during development
 - **POO:** mostly for practicing this paradigm and the application of **SOLID** principles.
+
+### Database
+
+- **MySQL as DBMS:** for being familiar with it
+- **ORM instead of a simple driver:** because I believe it's more important to apply as many good practices as possible instead of showing I can write SQL queries, despite the initial size of the project.
 
 ### Technologies
 
