@@ -1,0 +1,19 @@
+{
+  "name": "diwe-challenge-backend-jr",
+  "version": "1.0.0",
+  "description": "This is my solution to DIWE's technical challenge for the Junior Back-end Developer position. The challenge consists of building a REST API to serve data to a financial management system.",
+  "main": "server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renatosbispo/diwe-challenge-backend-jr.git"
+  },
+  "author": "Renato Bispo <renatosilvabispo@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/renatosbispo/diwe-challenge-backend-jr/issues"
+  },
+  "homepage": "https://github.com/renatosbispo/diwe-challenge-backend-jr#readme"
+}
