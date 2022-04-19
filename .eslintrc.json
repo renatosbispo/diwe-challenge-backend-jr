@@ -4,11 +4,14 @@
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "airbnb-base",
-    "airbnb-typescript"
+    "airbnb-typescript/base"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "sourceType": "module",
     "project": "./tsconfig.json"
+  },
+  "rules": {
+    "no-console": "off"
   }
 }
