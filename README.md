@@ -171,9 +171,11 @@ The API follows a three-layer architecture (not three-tier exactly, as this is m
 
 ### Technologies
 
+:warning: **Note**: this is not a comprehensive list, more of a highlight.
+
 - [**Node.js**](https://nodejs.org): because it's the ecosystem where I have the most experience
 - [**Typescript**](https://www.typescriptlang.org/): for preventing a lot of bugs even before the application runs
-- [**Prisma.js**](https://www.prisma.io/): because I want to test this **ORM** that became so popular, supports many relational databases (and **MongoDB**) and promises to be simpler and faster to use than its alternatives.
+- [**Prisma.js**](https://www.prisma.io/): because I want to test this **ORM** that became so popular, supports many relational databases (and **MongoDB**) and promises to be simpler and faster to use than its alternatives
 - [**Express.js**](https://expressjs.com/pt-br/): because it's the framework I'm most familiar with
 - [**Helmet.js**](https://helmetjs.github.io/): an Express middleware that sets multiple HTTP headers for additional security
 - [**Docker/Docker Compose**](https://docker.com/): to provide a consistent environment across all workflow stages (development, testing, and deployment).
