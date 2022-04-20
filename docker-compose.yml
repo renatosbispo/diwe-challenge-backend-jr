@@ -1,0 +1,12 @@
+services:
+  diwe-challenge-api:
+    container_name: diwe-challenge-api
+    build:
+      context: .
+      target: base
+    volumes:
+      - ./src:/app/src
+    ports:
+      - "${PORT}:${PORT}"
+      - "${DEBUGGER_PORT}:${DEBUGGER_PORT}"
+    command: npm run dev
