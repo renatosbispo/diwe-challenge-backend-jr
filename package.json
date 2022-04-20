@@ -2,7 +2,7 @@
   "name": "diwe-challenge-backend-jr",
   "version": "1.0.0",
   "description": "This is my solution to DIWE's technical challenge for the Junior Back-end Developer position. The challenge consists of building a REST API to serve data to a financial management system.",
-  "main": "server.ts",
+  "main": "src/server.ts",
   "scripts": {
     "dev": "dotenv -e .env.development -- tsnd --inspect=8181 --respawn src/server.ts",
     "lint": "eslint --fix . --ext .ts",
