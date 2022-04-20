@@ -12,15 +12,15 @@ datasource db {
 
 model User {
   id Int @id @default(autoincrement())
-  fullName String @db.VarChar(120) @map("full_name")
+  fullName String @db.VarChar(120) @map("full_name") // Define attribute name on table
   email String @db.VarChar(200)
   password String @db.VarChar(200)
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  financialEntries FinancialEntry[]
+  financialEntries FinancialEntry[] // Define one part of a 1:N relationship
 
-  @@map("users")
+  @@map("users") // Define table name
 }
 
 model Status {
@@ -51,6 +51,7 @@ model FinancialEntry {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
+  // Define the other part of a 1:N relationship
   status Status @relation(fields:[statusId], references:[id])
   user User @relation(fields:[userId], references:[id])
   type Type @relation(fields:[typeId], references:[id])
