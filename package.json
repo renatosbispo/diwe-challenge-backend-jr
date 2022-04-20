@@ -7,9 +7,10 @@
     "dev": "dotenv -e .env.development -- tsnd --inspect=0.0.0.0:8181 --respawn src/server.ts",
     "dev:compose:up": "docker-compose --env-file ./.env.development up",
     "dev:compose:down": "docker-compose --env-file ./.env.development down",
+    "dev:migrate": "dotenv -e .env.development -- prisma migrate dev",
+    "dev:migrate:reset": "dotenv -e .env.development -- prisma migrate reset",
+    "dev:seed": "dotenv -e .env.development -- prisma db seed",
     "lint": "eslint --fix . --ext .ts",
-    "migrate:dev": "dotenv -e .env.development -- prisma migrate dev",
-    "migrate:reset:dev": "dotenv -e .env.development -- prisma migrate reset",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -33,6 +34,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "prettier": "^2.6.2",
+    "ts-node": "^10.7.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.6.3"
   },
@@ -42,5 +44,8 @@
     "express": "^4.17.3",
     "helmet": "^5.0.2",
     "prisma": "^3.12.0"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }
