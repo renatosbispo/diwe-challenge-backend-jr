@@ -7,5 +7,6 @@ app.use(express.json());
 app.use(helmet());
 
 // TODO: Routes
+app.get('/ping', (_req, res) => res.status(200).json({ message: 'pong' }));
 
 export default app;

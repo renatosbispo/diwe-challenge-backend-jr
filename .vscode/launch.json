@@ -1,0 +1,16 @@
+{
+  "configurations": [
+    {
+      "name": "Attach to App",
+      "address": "0.0.0.0",
+      "port": 8181,
+      "localRoot": "${workspaceFolder}",
+      "remoteRoot": "/app",
+      "request": "attach",
+      "type": "node",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+  ]
+}

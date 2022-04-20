@@ -4,7 +4,8 @@
   "description": "This is my solution to DIWE's technical challenge for the Junior Back-end Developer position. The challenge consists of building a REST API to serve data to a financial management system.",
   "main": "src/server.ts",
   "scripts": {
-    "dev": "dotenv -e .env.development -- tsnd --inspect=8181 --respawn src/server.ts",
+    "dev": "dotenv -e .env.development -- tsnd --inspect=0.0.0.0:8181 --respawn src/server.ts",
+    "dev:compose": "docker-compose --env-file ./.env.development up",
     "lint": "eslint --fix . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
