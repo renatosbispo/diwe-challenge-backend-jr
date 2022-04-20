@@ -5,7 +5,7 @@
   "main": "src/server.ts",
   "scripts": {
     "dev": "dotenv -e .env.development -- tsnd --inspect=0.0.0.0:8181 --respawn src/server.ts",
-    "dev:docker": "docker-compose --env-file ./.env.development up",
+    "dev:compose": "docker-compose --env-file ./.env.development up",
     "lint": "eslint --fix . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
