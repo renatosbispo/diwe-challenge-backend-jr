@@ -8,6 +8,8 @@
     "dev:compose:up": "docker-compose --env-file ./.env.development up",
     "dev:compose:down": "docker-compose --env-file ./.env.development down",
     "lint": "eslint --fix . --ext .ts",
+    "migrate:dev": "dotenv -e .env.development -- prisma migrate dev",
+    "migrate:reset:dev": "dotenv -e .env.development -- prisma migrate reset",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -35,6 +37,7 @@
     "typescript": "^4.6.3"
   },
   "dependencies": {
+    "@prisma/client": "^3.12.0",
     "dotenv-cli": "^5.1.0",
     "express": "^4.17.3",
     "helmet": "^5.0.2",
