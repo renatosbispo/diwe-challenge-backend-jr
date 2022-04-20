@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  fullName String @db.VarChar(120) @map("full_name") // Define attribute name on table
+  email String @db.VarChar(200)
+  password String @db.VarChar(200)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  financialEntries FinancialEntry[] // Define one part of a 1:N relationship
+
+  @@map("users") // Define table name
+}
+
+model Status {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(100)
+
+  financialEntries FinancialEntry[]
+
+  @@map("statuses")
+}
+
+model Type {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(100)
+
+  financialEntries FinancialEntry[]
+
+  @@map("types")
+}
+
+model FinancialEntry {
+  id Int @id @default(autoincrement())
+  statusId Int @map("status_id")
+  userId Int @map("user_id")
+  typeId Int @map("type_id")
+  amount Int
+  description String @db.VarChar(255)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Define the other part of a 1:N relationship
+  status Status @relation(fields:[statusId], references:[id])
+  user User @relation(fields:[userId], references:[id])
+  type Type @relation(fields:[typeId], references:[id])
+
+  @@map("financial_entries")
+}

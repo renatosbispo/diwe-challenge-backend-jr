@@ -1,12 +1,30 @@
 services:
+  diwe-challenge-db:
+    container_name: diwe-challenge-db
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+    ports:
+      - $DB_PORT:3306
+    volumes:
+      - db:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+
   diwe-challenge-api:
+    depends_on:
+      - diwe-challenge-db
     container_name: diwe-challenge-api
+    image: renatosbispo/diwe-challenge-api
     build:
       context: .
       target: base
     volumes:
       - ./src:/app/src
     ports:
-      - "${PORT}:${PORT}"
-      - "${DEBUGGER_PORT}:${DEBUGGER_PORT}"
+      - $PORT:$PORT
+      - $DEBUGGER_PORT:$DEBUGGER_PORT
     command: npm run dev
+
+volumes:
+  db:
