@@ -54,7 +54,7 @@ beforeEach(() => {
 
 // Setup test hook to destroy test DB structure
 afterEach(async () => {
-  await prisma.$executeRaw`DROP DATABASE IF EXISTS ${uniqueDatabaseName};`
+  await prisma.$executeRawUnsafe(`DROP SCHEMA IF EXISTS \`${uniqueDatabaseName}\``);
 
   await prisma.$disconnect();
 });
