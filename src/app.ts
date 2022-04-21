@@ -9,6 +9,8 @@ app.use(helmet());
 
 // TODO: Routes
 app.get('/ping', (_req, res) => res.status(200).json({ message: 'pong' }));
+
+// Temporary endpoint definition to make sure tests are working
 app.get('/types', async (_req, res) => {
   const types = await prisma.type.findMany({ select: { name: true } });
 
