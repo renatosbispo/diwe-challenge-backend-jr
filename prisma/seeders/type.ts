@@ -11,21 +11,20 @@ export default class TypeSeeder implements Seeder {
   public async seed() {
     console.log('Seeding types...');
 
-    await Promise.all([
-      this.prisma.type.upsert({
-        where: { id: 1 },
-        update: {},
-        create: {
-          name: 'expense'
-        }
-      }),
-      this.prisma.type.upsert({
-        where: { id: 2 },
-        update: {},
-        create: {
-          name: 'income'
-        }
-      })
-    ]);
+    await this.prisma.type.upsert({
+      where: { id: 1 },
+      update: {},
+      create: {
+        name: 'expense'
+      }
+    });
+
+    await this.prisma.type.upsert({
+      where: { id: 2 },
+      update: {},
+      create: {
+        name: 'income'
+      }
+    });
   }
 }
