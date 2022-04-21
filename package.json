@@ -7,7 +7,7 @@
     "compose:up": "dotenv -e .env.dev -e .env.test -- docker-compose up -d",
     "compose:down": "dotenv -e .env.dev -e .env.test -- docker-compose down",
     "db:setup": "npm run migrate",
-    "dev": "dotenv -e .env.development -- tsnd --inspect=0.0.0.0:8181 --respawn src/server.ts",
+    "dev": "dotenv -e .env.dev -- tsnd --respawn src/server.ts",
     "lint": "eslint --fix . --ext .ts",
     "migrate": "dotenv -e .env.dev -- prisma migrate dev",
     "migrate:reset": "dotenv -e .env.dev -- prisma migrate reset",
