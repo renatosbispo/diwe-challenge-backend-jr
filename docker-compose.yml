@@ -3,8 +3,8 @@ services:
     container_name: diwe-challenge-db
     image: mysql:5.7
     environment:
-      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
-      - MYSQL_DATABASE=$MYSQL_DATABASE
+      - MYSQL_ROOT_PASSWORD=$DB_ROOT_PASSWORD
+      - MYSQL_DATABASE=$DB_NAME
     ports:
       - $DB_PORT:3306
     volumes:
@@ -21,6 +21,7 @@ services:
       target: base
     volumes:
       - ./src:/app/src
+    network_mode: host
     ports:
       - $PORT:$PORT
       - $DEBUGGER_PORT:$DEBUGGER_PORT
