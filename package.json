@@ -5,13 +5,15 @@
   "main": "src/server.ts",
   "scripts": {
     "dev": "dotenv -e .env.development -- tsnd --inspect=0.0.0.0:8181 --respawn src/server.ts",
-    "dev:compose:up": "docker-compose --env-file ./.env.development up",
-    "dev:compose:down": "docker-compose --env-file ./.env.development down",
+    "dev:compose:up": "docker-compose --env-file .env.development up",
+    "dev:compose:down": "docker-compose --env-file .env.development down",
     "dev:migrate": "dotenv -e .env.development -- prisma migrate dev",
     "dev:migrate:reset": "dotenv -e .env.development -- prisma migrate reset",
     "dev:seed": "dotenv -e .env.development -- prisma db seed",
     "lint": "eslint --fix . --ext .ts",
-    "test": "dotenv -e .env.development -- jest"
+    "test": "npx prisma generate && dotenv -e .env.test -- jest",
+    "test:compose:up": "docker-compose --env-file .env.test -f docker-compose.yml up --attach diwe-challenge-api",
+    "test:compose:down": "docker-compose --env-file .env.test -f docker-compose.yml down"
   },
   "repository": {
     "type": "git",
