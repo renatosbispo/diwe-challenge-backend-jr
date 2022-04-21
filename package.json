@@ -4,6 +4,8 @@
   "description": "This is my solution to DIWE's technical challenge for the Junior Back-end Developer position. The challenge consists of building a REST API to serve data to a financial management system.",
   "main": "src/server.ts",
   "scripts": {
+    "compose:up": "dotenv -e .env.dev -e .env.test -- docker-compose up -d",
+    "compose:down": "dotenv -e .env.dev -e .env.test -- docker-compose down",
     "dev": "dotenv -e .env.development -- tsnd --inspect=0.0.0.0:8181 --respawn src/server.ts",
     "dev:compose:up": "docker-compose --env-file .env.development up",
     "dev:compose:down": "docker-compose --env-file .env.development down",
