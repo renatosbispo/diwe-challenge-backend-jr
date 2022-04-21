@@ -11,7 +11,7 @@
     "dev:migrate:reset": "dotenv -e .env.development -- prisma migrate reset",
     "dev:seed": "dotenv -e .env.development -- prisma db seed",
     "lint": "eslint --fix . --ext .ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "dotenv -e .env.development -- jest"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "@types/express": "^4.17.13",
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.25",
+    "@types/supertest": "^2.0.12",
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
@@ -37,6 +38,7 @@
     "eslint-plugin-import": "^2.26.0",
     "jest": "^27.5.1",
     "prettier": "^2.6.2",
+    "supertest": "^6.2.2",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.7.0",
     "ts-node-dev": "^1.1.8",
