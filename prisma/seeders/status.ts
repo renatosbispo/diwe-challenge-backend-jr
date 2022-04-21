@@ -11,21 +11,20 @@ export default class StatusSeeder implements Seeder {
   public async seed() {
     console.log('Seeding statuses...');
 
-    await Promise.all([
-      this.prisma.status.upsert({
-        where: { id: 1 },
-        update: {},
-        create: {
-          name: 'paid'
-        }
-      }),
-      this.prisma.status.upsert({
-        where: { id: 2 },
-        update: {},
-        create: {
-          name: 'unpaid'
-        }
-      })
-    ]);
+    await this.prisma.status.upsert({
+      where: { id: 1 },
+      update: {},
+      create: {
+        name: 'paid'
+      }
+    });
+
+    await this.prisma.status.upsert({
+      where: { id: 2 },
+      update: {},
+      create: {
+        name: 'unpaid'
+      }
+    });
   }
 }
