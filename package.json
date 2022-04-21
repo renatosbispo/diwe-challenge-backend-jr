@@ -6,16 +6,13 @@
   "scripts": {
     "compose:up": "dotenv -e .env.dev -e .env.test -- docker-compose up -d",
     "compose:down": "dotenv -e .env.dev -e .env.test -- docker-compose down",
+    "db:setup": "npm run migrate",
     "dev": "dotenv -e .env.development -- tsnd --inspect=0.0.0.0:8181 --respawn src/server.ts",
-    "dev:compose:up": "docker-compose --env-file .env.development up",
-    "dev:compose:down": "docker-compose --env-file .env.development down",
-    "dev:migrate": "dotenv -e .env.development -- prisma migrate dev",
-    "dev:migrate:reset": "dotenv -e .env.development -- prisma migrate reset",
-    "dev:seed": "dotenv -e .env.development -- prisma db seed",
     "lint": "eslint --fix . --ext .ts",
-    "test": "npx prisma generate && dotenv -e .env.test -- jest",
-    "test:compose:up": "docker-compose --env-file .env.test -f docker-compose.yml up --attach diwe-challenge-api",
-    "test:compose:down": "docker-compose --env-file .env.test -f docker-compose.yml down"
+    "migrate": "dotenv -e .env.dev -- prisma migrate dev",
+    "migrate:reset": "dotenv -e .env.dev -- prisma migrate reset",
+    "seed": "dotenv -e .env.dev -- prisma db seed",
+    "test": "npx prisma generate && dotenv -e .env.test -- jest"
   },
   "repository": {
     "type": "git",
