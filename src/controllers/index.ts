@@ -1,4 +1,5 @@
 import LoginController from './login';
+import StatusController from './status';
 import TypeController from './type';
 
-export { LoginController, TypeController };
+export { LoginController, StatusController, TypeController };
