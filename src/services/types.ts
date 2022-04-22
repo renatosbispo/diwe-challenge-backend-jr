@@ -1,6 +1,6 @@
 import { PrismaClient, Type } from '@prisma/client';
 
-export default class LoginService {
+export default class TypeService {
   protected prisma: PrismaClient;
 
   constructor(prisma: PrismaClient) {
