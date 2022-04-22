@@ -20,7 +20,7 @@ export default class LoginService {
     if (!user || !CryptoService.compare(password, user.password)) {
       throw new ErrorWithCode(
         ErrorCode.LOGIN_INFO_INVALID,
-        'Username or password invalid'
+        'Invalid email or password.'
       );
     }
 
