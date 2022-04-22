@@ -1,3 +1,4 @@
+import FinancialEntrySchema from './financial-entry';
 import UserSchema from './user';
 
-export { UserSchema };
+export { FinancialEntrySchema, UserSchema };
