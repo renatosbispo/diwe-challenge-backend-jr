@@ -12,7 +12,7 @@ describe('POST /login', () => {
         const response = await supertest(app)
           .post('/login')
           .send({ email: 'tony@soprano.com', password: 'theboss' })
-          .expect(201);
+          .expect(200);
 
         expect(response.body.token).toBeDefined();
       });
