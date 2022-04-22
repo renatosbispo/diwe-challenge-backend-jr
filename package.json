@@ -4,9 +4,9 @@
   "description": "This is my solution to DIWE's technical challenge for the Junior Back-end Developer position. The challenge consists of building a REST API to serve data to a financial management system.",
   "main": "src/server.ts",
   "scripts": {
-    "compose:up": "dotenv -e .env.dev -e .env.test -- docker-compose up -d",
+    "compose:up": "dotenv -e .env.dev -e .env.test -- docker-compose up",
     "compose:down": "dotenv -e .env.dev -e .env.test -- docker-compose down",
-    "dev": "dotenv -e .env.dev -- tsnd --respawn src/server.ts",
+    "dev": "dotenv -e .env.dev -- tsnd --respawn --exit-child src/server.ts",
     "lint": "eslint --fix . --ext .ts",
     "migrate": "dotenv -e .env.dev -- prisma migrate dev",
     "migrate:reset": "dotenv -e .env.dev -- prisma migrate reset",
@@ -27,6 +27,7 @@
     "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.4.1",
+    "@types/jsonwebtoken": "^8.5.8",
     "@types/node": "^17.0.25",
     "@types/supertest": "^2.0.12",
     "@types/uuid": "^8.3.4",
@@ -51,6 +52,8 @@
     "dotenv-cli": "^5.1.0",
     "express": "^4.17.3",
     "helmet": "^5.0.2",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
     "prisma": "^3.12.0",
     "uuid": "^8.3.2"
   },

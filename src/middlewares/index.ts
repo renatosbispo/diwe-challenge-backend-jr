@@ -1,6 +1,5 @@
+import AuthMiddleware from './auth';
 import ErrorMiddleware from './error';
+import RequestValidationMiddleware from './request-validation';
 
-export {
-  // More middlewares to come
-  ErrorMiddleware,
-};
+export { AuthMiddleware, ErrorMiddleware, RequestValidationMiddleware };

@@ -1,3 +1,5 @@
+import AuthService from './auth';
 import CryptoService from './crypto';
+import LoginService from './login';
 
-export { CryptoService };
+export { AuthService, CryptoService, LoginService };
