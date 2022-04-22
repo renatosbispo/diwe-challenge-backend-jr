@@ -7,7 +7,7 @@ export default class TypeService {
     this.prisma = prisma;
   }
 
-  public async getTypes(): Promise<Type[]> {
+  public async getAll(): Promise<Type[]> {
     const types = await this.prisma.type.findMany();
 
     return types;
