@@ -4,7 +4,7 @@
   "description": "This is my solution to DIWE's technical challenge for the Junior Back-end Developer position. The challenge consists of building a REST API to serve data to a financial management system.",
   "main": "src/server.ts",
   "scripts": {
-    "compose:up": "dotenv -e .env.dev -e .env.test -- docker-compose up -d",
+    "compose:up": "dotenv -e .env.dev -e .env.test -- docker-compose up",
     "compose:down": "dotenv -e .env.dev -e .env.test -- docker-compose down",
     "dev": "dotenv -e .env.dev -- tsnd --respawn src/server.ts",
     "lint": "eslint --fix . --ext .ts",
