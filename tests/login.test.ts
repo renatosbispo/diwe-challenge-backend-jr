@@ -6,7 +6,7 @@ import app from '../src/app';
 describe('POST /login', () => {
   describe('If the request body contains email and password', () => {
     describe('If the user exists', () => {
-      it('Should respond with a token', async () => {
+      it('Should respond with a token and status code 200', async () => {
         await new UserSeeder(prisma).seed();
 
         const response = await supertest(app)
@@ -15,6 +15,22 @@ describe('POST /login', () => {
           .expect(200);
 
         expect(response.body.token).toBeDefined();
+      });
+    });
+
+    describe("If the user doesn't exist", () => {
+      it('Should respond with an error and status code 401', async () => {
+        const expectedErrorMessage = 'Invalid email or password.';
+
+        await new UserSeeder(prisma).seed();
+
+        const response = await supertest(app)
+          .post('/login')
+          .send({ email: 'inexistent@user.com', password: 'password' })
+          .expect(401);
+
+        expect(response.body.error).toBeDefined();
+        expect(response.body.error).toBe(expectedErrorMessage);
       });
     });
   });
