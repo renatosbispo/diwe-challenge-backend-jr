@@ -17,7 +17,7 @@ export default class LoginService {
 
     const user = await this.prisma.user.findFirst({ where: { email } });
 
-    if (!user || !CryptoService.compare(password, user.password)) {
+    if (!user || !(await CryptoService.compare(password, user.password))) {
       throw new ErrorWithCode(
         ErrorCode.LOGIN_INFO_INVALID,
         'Invalid email or password.'
