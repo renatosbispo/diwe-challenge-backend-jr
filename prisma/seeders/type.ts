@@ -9,8 +9,6 @@ export default class TypeSeeder implements Seeder {
   }
 
   public async seed() {
-    console.log('Seeding types...');
-
     await this.prisma.type.upsert({
       where: { id: 1 },
       update: {},

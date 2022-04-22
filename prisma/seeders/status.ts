@@ -9,8 +9,6 @@ export default class StatusSeeder implements Seeder {
   }
 
   public async seed() {
-    console.log('Seeding statuses...');
-
     await this.prisma.status.upsert({
       where: { id: 1 },
       update: {},
