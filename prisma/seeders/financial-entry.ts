@@ -9,8 +9,6 @@ export default class FinancialEntrySeeder implements Seeder {
   }
 
   public async seed() {
-    console.log('Seeding financial_entries...');
-
     await this.prisma.financialEntry.upsert({
       where: { id: 1 },
       update: {},

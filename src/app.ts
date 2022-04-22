@@ -1,7 +1,12 @@
 import express from 'express';
 import helmet from 'helmet';
 import { AuthMiddleware, ErrorMiddleware } from './middlewares';
-import { LoginRoute, StatusRoute, TypeRoute } from './routes';
+import {
+  FinancialEntryRoute,
+  LoginRoute,
+  StatusRoute,
+  TypeRoute,
+} from './routes';
 
 const app = express();
 
@@ -16,6 +21,7 @@ app.use(AuthMiddleware.verifyToken);
 // Protected routes
 app.use('/types', new TypeRoute().router);
 app.use('/statuses', new StatusRoute().router);
+app.use('/financial-entries', new FinancialEntryRoute().router);
 
 app.use(ErrorMiddleware.handleError);
 

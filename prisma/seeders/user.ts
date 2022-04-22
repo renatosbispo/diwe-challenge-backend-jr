@@ -10,8 +10,6 @@ export default class UserSeeder implements Seeder {
   }
 
   public async seed() {
-    console.log('Seeding users...');
-
     await this.prisma.user.upsert({
       where: { id: 1 },
       update: {},

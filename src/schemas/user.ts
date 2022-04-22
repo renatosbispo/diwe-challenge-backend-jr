@@ -4,7 +4,7 @@ export default class UserSchema {
   public static email = Joi.string()
     .email({ tlds: { allow: false } })
     .required()
-    .label('Email');
+    .label('email');
 
-  public static password = Joi.string().required().label('Password');
+  public static password = Joi.string().required().label('password');
 }
