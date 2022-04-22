@@ -1,9 +1,13 @@
-import supertest from 'supertest';
+import supertest, { Response } from 'supertest';
 import prisma from '../prisma/index';
+import StatusSeeder from '../prisma/seeders/status';
+import TypeSeeder from '../prisma/seeders/type';
 import UserSeeder from '../prisma/seeders/user';
 import app from '../src/app';
 
 describe('POST /financial-entries', () => {
+  const statusSeeder = new StatusSeeder(prisma);
+  const typeSeeder = new TypeSeeder(prisma);
   const userSeeder = new UserSeeder(prisma);
 
   describe('If token is missing, invalid or expired', () => {
@@ -14,15 +18,19 @@ describe('POST /financial-entries', () => {
 
   describe('If token is valid', () => {
     describe('If the request body contains amount, description, statusId and typeId', () => {
-      it('Should create a new financial entry and respond with status code 201', async () => {
-        await userSeeder.seed();
+      const financialEntryData = {
+        amount: 3000000,
+        description: 'New car for A.J.',
+        statusId: 1,
+        typeId: 1,
+      };
 
-        const financialEntryData = {
-          amount: 3000000,
-          description: 'New car for A.J.',
-          statusId: 1,
-          typeId: 1,
-        };
+      let response: Response;
+
+      beforeEach(async () => {
+        await statusSeeder.seed();
+        await typeSeeder.seed();
+        await userSeeder.seed();
 
         const {
           body: { token },
@@ -30,12 +38,14 @@ describe('POST /financial-entries', () => {
           .post('/login')
           .send({ email: 'tony@soprano.com', password: 'theboss' });
 
-        await supertest(app)
+        response = await supertest(app)
           .post('/financial-entries')
           .set('Authorization', token)
           .send(financialEntryData)
           .expect(201);
+      });
 
+      it('Should create a new financial entry and respond with status code 201', async () => {
         const retrievedFinancialEntry = await prisma.financialEntry.findFirst();
 
         expect(retrievedFinancialEntry?.amount).toBe(financialEntryData.amount);
@@ -49,6 +59,10 @@ describe('POST /financial-entries', () => {
         );
 
         expect(retrievedFinancialEntry?.typeId).toBe(financialEntryData.typeId);
+      });
+
+      it('The response body should contain the financial entry data sent in the request', async () => {
+        expect(response.body).toMatchObject(financialEntryData);
       });
     });
   });
