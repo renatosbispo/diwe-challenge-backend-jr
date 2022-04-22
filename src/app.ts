@@ -1,6 +1,6 @@
 import express from 'express';
 import helmet from 'helmet';
-import { ErrorMiddleware } from './middlewares';
+import { AuthMiddleware, ErrorMiddleware } from './middlewares';
 import { LoginRoute } from './routes';
 
 const app = express();
@@ -8,10 +8,11 @@ const app = express();
 app.use(express.json());
 app.use(helmet());
 
-// TODO: Routes
-app.get('/ping', (_req, res) => res.status(200).json({ message: 'pong' }));
-
+// Login
 app.use('/login', new LoginRoute().router);
+
+app.use(AuthMiddleware.verifyToken);
+// Protected routes
 
 app.use(ErrorMiddleware.handleError);
 
