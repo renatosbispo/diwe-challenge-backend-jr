@@ -21,7 +21,9 @@ describe('GET /statuses', () => {
 
       const expectedStatuses = await prisma.status.findMany();
 
-      const { body: { token } } = await supertest(app)
+      const {
+        body: { token },
+      } = await supertest(app)
         .post('/login')
         .send({ email: 'tony@soprano.com', password: 'theboss' });
 
