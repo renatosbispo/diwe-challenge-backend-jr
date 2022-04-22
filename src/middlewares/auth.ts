@@ -10,8 +10,8 @@ export default class AuthMiddleware {
     try {
       const token = req.headers.authorization;
 
-      const { email } = AuthService.verifyToken(token);
-      req.tokenPayload = { email };
+      const { email, id } = AuthService.verifyToken(token);
+      req.tokenPayload = { email, id };
 
       next();
     } catch (error) {

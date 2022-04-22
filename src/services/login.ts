@@ -24,6 +24,6 @@ export default class LoginService {
       );
     }
 
-    return { email };
+    return { email, id: user.id };
   }
 }
