@@ -1,12 +1,15 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '.';
+import FinancialEntrySeeder from './seeders/financial-entry';
 import StatusSeeder from './seeders/status';
 import TypeSeeder from './seeders/type';
+import UserSeeder from './seeders/user';
 
-const prisma = new PrismaClient();
 
 async function main() {
   await new StatusSeeder(prisma).seed();
   await new TypeSeeder(prisma).seed();
+  await new UserSeeder(prisma).seed();
+  await new FinancialEntrySeeder(prisma).seed();
 }
 
 main()
