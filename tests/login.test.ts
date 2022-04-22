@@ -65,7 +65,7 @@ describe('POST /login', () => {
     });
   });
 
-  describe.only('If the request body has missing information', () => {
+  describe('If the request body has missing information', () => {
     it('Should respond with an error and status code 422', async () => {
       const responses = await Promise.all([
         supertest(app)
