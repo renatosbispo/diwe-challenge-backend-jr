@@ -6,7 +6,6 @@
   "scripts": {
     "compose:up": "dotenv -e .env.dev -e .env.test -- docker-compose up -d",
     "compose:down": "dotenv -e .env.dev -e .env.test -- docker-compose down",
-    "db:setup": "npm run migrate:dev",
     "dev": "dotenv -e .env.dev -- tsnd --respawn src/server.ts",
     "lint": "eslint --fix . --ext .ts",
     "migrate": "dotenv -e .env.dev -- prisma migrate dev",
