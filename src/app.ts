@@ -1,6 +1,7 @@
 import express from 'express';
 import helmet from 'helmet';
 import prisma from '../prisma';
+import { ErrorMiddleware } from './middlewares';
 
 const app = express();
 
@@ -16,5 +17,7 @@ app.get('/types', async (_req, res) => {
 
   res.status(200).json(types.map(({ name }) => name));
 });
+
+app.use(ErrorMiddleware.handleError);
 
 export default app;
