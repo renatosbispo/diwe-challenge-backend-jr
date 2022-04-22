@@ -17,13 +17,13 @@ export default class LoginService {
 
     const user = await this.prisma.user.findFirst({ where: { email } });
 
-    if (!user || CryptoService.compare(password, user.password)) {
+    if (!user || !CryptoService.compare(password, user.password)) {
       throw new ErrorWithCode(
         ErrorCode.LOGIN_INFO_INVALID,
         'Username or password invalid'
       );
     }
 
-    return user;
+    return { email };
   }
 }
