@@ -19,6 +19,8 @@ describe('GET /types', () => {
       await typeSeeder.seed();
       await userSeeder.seed();
 
+      const expectedTypes = await prisma.type.findMany();
+
       const { body: { token } } = await supertest(app)
         .post('/login')
         .send({ email: 'tony@soprano.com', password: 'theboss' });
@@ -28,7 +30,7 @@ describe('GET /types', () => {
         .set('Authorization', token)
         .expect(200);
 
-      expect(response).toEqual(['expense', 'income']);
+      expect(response.body).toEqual(expectedTypes);
     });
   });
 });
