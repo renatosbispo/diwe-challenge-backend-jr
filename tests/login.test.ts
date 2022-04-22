@@ -4,10 +4,12 @@ import UserSeeder from '../prisma/seeders/user';
 import app from '../src/app';
 
 describe('POST /login', () => {
+  const userSeeder = new UserSeeder(prisma);
+
   describe('If the request body contains valid email and password', () => {
     describe('If the user exists and the password is correct', () => {
       it('Should respond with a token and status code 200', async () => {
-        await new UserSeeder(prisma).seed();
+        await userSeeder.seed();
 
         const response = await supertest(app)
           .post('/login')
@@ -22,7 +24,7 @@ describe('POST /login', () => {
       it('Should respond with an error and status code 401', async () => {
         const expectedErrorMessage = 'Wrong email or password.';
 
-        await new UserSeeder(prisma).seed();
+        await userSeeder.seed();
 
         const response = await supertest(app)
           .post('/login')
@@ -38,7 +40,7 @@ describe('POST /login', () => {
       it('Should respond with an error and status code 401', async () => {
         const expectedErrorMessage = 'Wrong email or password.';
 
-        await new UserSeeder(prisma).seed();
+        await userSeeder.seed();
 
         const response = await supertest(app)
           .post('/login')

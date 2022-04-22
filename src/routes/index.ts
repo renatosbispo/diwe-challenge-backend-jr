@@ -1,3 +1,4 @@
 import LoginRoute from './login';
+import TypeRoute from './type';
 
-export { LoginRoute };
+export { LoginRoute, TypeRoute };

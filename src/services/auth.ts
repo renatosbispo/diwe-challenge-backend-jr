@@ -28,6 +28,13 @@ export default class AuthService {
 
       return payload as ITokenPayload;
     } catch (error) {
+      if (error instanceof Error && error.name === 'TokenExpiredError') {
+        throw new ErrorWithCode(
+          ErrorCode.TOKEN_EXPIRED_OR_INVALID,
+          'Expired token'
+        );
+      }
+
       throw new ErrorWithCode(
         ErrorCode.TOKEN_EXPIRED_OR_INVALID,
         'Invalid token'

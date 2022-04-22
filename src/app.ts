@@ -1,7 +1,7 @@
 import express from 'express';
 import helmet from 'helmet';
 import { AuthMiddleware, ErrorMiddleware } from './middlewares';
-import { LoginRoute } from './routes';
+import { LoginRoute, TypeRoute } from './routes';
 
 const app = express();
 
@@ -12,7 +12,9 @@ app.use(helmet());
 app.use('/login', new LoginRoute().router);
 
 app.use(AuthMiddleware.verifyToken);
+
 // Protected routes
+app.use('/types', new TypeRoute().router);
 
 app.use(ErrorMiddleware.handleError);
 
