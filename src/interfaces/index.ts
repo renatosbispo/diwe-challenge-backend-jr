@@ -1,3 +1,4 @@
+import ILoginCredentials from './ILoginCredentials';
 import ITokenPayload from './ITokenPayload';
 
-export { ITokenPayload };
+export { ILoginCredentials, ITokenPayload };
