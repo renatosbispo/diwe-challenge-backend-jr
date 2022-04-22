@@ -157,5 +157,56 @@ describe('POST /financial-entries', () => {
         );
       });
     });
+
+    describe('If the request body has missing information', () => {
+      it('Should return an error and status code 422', async () => {
+        const responses = await Promise.all([
+          // Missing amount
+          supertest(app)
+            .post('/financial-entries')
+            .set('Authorization', token)
+            .send({
+              description: 'Proper description',
+              statusId: 1,
+              typeId: 2,
+            })
+            .expect(422),
+          // Missing description
+          supertest(app)
+            .post('/financial-entries')
+            .set('Authorization', token)
+            .send({
+              amount: 1000,
+              statusId: 1,
+              typeId: 2,
+            })
+            .expect(422),
+          // Missing statusId
+          supertest(app)
+            .post('/financial-entries')
+            .set('Authorization', token)
+            .send({
+              amount: 1000,
+              description: 'Proper description',
+              typeId: 2,
+            })
+            .expect(422),
+          // Missing typeId
+          supertest(app)
+            .post('/financial-entries')
+            .set('Authorization', token)
+            .send({
+              amount: 1000,
+              description: 'Proper description',
+              statusId: 2,
+            })
+            .expect(422),
+        ]);
+
+        responses.forEach((response) =>
+          expect(response.body.error).toBeDefined()
+        );
+      });
+    });
   });
 });
