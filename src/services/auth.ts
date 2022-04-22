@@ -9,7 +9,11 @@ export default class AuthService {
       algorithm: 'HS256',
     };
 
-    const token = jwt.sign(payload, process.env.JWT_SECRET as string, jwtConfig);
+    const token = jwt.sign(
+      payload,
+      process.env.JWT_SECRET as string,
+      jwtConfig
+    );
 
     return token;
   }
@@ -20,11 +24,14 @@ export default class AuthService {
     }
 
     try {
-      const payload = jwt.verify(token, process.env.JWT_SECRET  as string);
+      const payload = jwt.verify(token, process.env.JWT_SECRET as string);
 
       return payload as ITokenPayload;
     } catch (error) {
-      throw new ErrorWithCode(ErrorCode.TOKEN_EXPIRED_OR_INVALID, 'Invalid token');
+      throw new ErrorWithCode(
+        ErrorCode.TOKEN_EXPIRED_OR_INVALID,
+        'Invalid token'
+      );
     }
   }
 }
