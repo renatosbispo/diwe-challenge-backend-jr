@@ -30,11 +30,13 @@ export default class ErrorMiddleware {
   ): void {
     const { message } = error;
     let statusCode = 500;
+    let errorCode = 'INTERNAL_SERVER_ERROR';
 
     if (error instanceof ErrorWithCode) {
+      errorCode = error.code;
       statusCode = ErrorMiddleware.getHttpStatusFromErrorCode(error.code);
     }
 
-    res.status(statusCode).json({ error: message });
+    res.status(statusCode).json({ error: { code: errorCode, message } });
   }
 }
