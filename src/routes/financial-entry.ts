@@ -78,6 +78,18 @@ export default class FinancialEntryRoute {
             req.params.id
           ).validate(req, res, next);
         },
+        async (req: Request, res: Response, next: NextFunction) => {
+          await new RequestValidationMiddleware(
+            FinancialEntrySchema.amountOptional,
+            req.body.amount
+          ).validate(req, res, next);
+        },
+        async (req: Request, res: Response, next: NextFunction) => {
+          await new RequestValidationMiddleware(
+            FinancialEntrySchema.statusIdOptional,
+            req.body.statusId
+          ).validate(req, res, next);
+        },
         async (
           req: Request<{ id: string }, FinancialEntry, Partial<FinancialEntry>>,
           res: Response,
