@@ -52,7 +52,7 @@ describe('GET /financial-entries', () => {
         .expect(200);
 
       response.body.forEach((financialEntry: FinancialEntry) =>
-        expect(financialEntry.userId === 1)
+        expect(financialEntry.userId).toBe(1)
       );
     });
   });
