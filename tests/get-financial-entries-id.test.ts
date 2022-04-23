@@ -45,16 +45,40 @@ describe('GET /financial-entries/{id}', () => {
         });
     });
 
-    it('Should return only the financial entry of the user that matches the param id with status code 200', async () => {
-      const response = await supertest(app)
-        .get('/financial-entries/4')
-        .set('Authorization', token)
-        .expect(200);
+    describe('If the params.id is valid', () => {
+      it('Should return only the financial entry of the user that matches the param id with status code 200', async () => {
+        const response = await supertest(app)
+          .get('/financial-entries/4')
+          .set('Authorization', token)
+          .expect(200);
 
-      const receivedFinancialEntry: FinancialEntry = response.body;
+        const receivedFinancialEntry: FinancialEntry = response.body;
 
-      expect(receivedFinancialEntry.userId).toBe(1);
-      expect(receivedFinancialEntry.id).toBe(4);
+        expect(receivedFinancialEntry.userId).toBe(1);
+        expect(receivedFinancialEntry.id).toBe(4);
+      });
+    });
+
+    describe('If the params.id is invalid', () => {
+      it('Should return an error and status code 422', async () => {
+        const response = await supertest(app)
+          .get('/financial-entries/not-a-number')
+          .set('Authorization', token)
+          .expect(422);
+
+        expect(response.body.error).toBeDefined();
+      });
+    });
+
+    describe('If the params.id is valid but does not correspond to an existing entity', () => {
+      it('Should return an error and status code 404', async () => {
+        const response = await supertest(app)
+          .get('/financial-entries/99999')
+          .set('Authorization', token)
+          .expect(404);
+
+        expect(response.body.error).toBeDefined();
+      });
     });
   });
 });
