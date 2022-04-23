@@ -182,7 +182,22 @@ The API follows a three-layer architecture (not three-tier exactly, as this is m
 
 ## Setup
 
-Coming soon.
+### Requirements
+
+Make sure you have the following tools installed and properly configured:
+
+- [**Node.js**](https://nodejs.org/en/) (16.14.2)
+- [**Docker**](https://www.docker.com/get-started/) (20.10.14)
+- [**Docker Compose**](https://docs.docker.com/compose/install/) (2.2.2)
+- [**Insomnia**](https://insomnia.rest/download) (2021.7.2)
+  - In one of the sections that follow, I provide an **Insomnia collection** to **manually test the API** and also to serve as a **documentation** for it. If you can find a way to import this collection into **Postman**, that's great! But I'm not sure how well the structure of the collection will hold, which is why I decided to list **Insomnia as a requirement** rather than a suggestion.
+
+**Notice:** the **version numbers in parenthesis** are the ones I used during development, but that doesn't necessarily mean it won't work with different versions.
+
+### Suggestions
+
+If you use [VSCode](https://code.visualstudio.com/) as an editor, I highly suggest you install the [**Prisma extension**](https://marketplace.visualstudio.com/items?itemName=Prisma.prisma), which:
+> Adds syntax highlighting, formatting, auto-completion, jump-to-definition and linting for .prisma files.
 
 ## Usage
 
