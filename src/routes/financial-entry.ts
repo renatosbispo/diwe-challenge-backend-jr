@@ -1,3 +1,4 @@
+import { FinancialEntry } from '@prisma/client';
 import { NextFunction, Request, Response, Router } from 'express';
 import prisma from '../../prisma';
 import { FinancialEntryController } from '../controllers';
@@ -67,6 +68,22 @@ export default class FinancialEntryRoute {
         },
         async (req: Request, res: Response, next: NextFunction) => {
           await this.financialEntryController.create(req, res, next);
+        }
+      )
+      .put(
+        '/:id',
+        async (req: Request, res: Response, next: NextFunction) => {
+          await new RequestValidationMiddleware(
+            FinancialEntrySchema.id,
+            req.params.id
+          ).validate(req, res, next);
+        },
+        async (
+          req: Request<{ id: string }, FinancialEntry, Partial<FinancialEntry>>,
+          res: Response,
+          next: NextFunction
+        ) => {
+          await this.financialEntryController.update(req, res, next);
         }
       );
   }
