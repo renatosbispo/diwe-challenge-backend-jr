@@ -1,3 +1,4 @@
+import { FinancialEntry } from '@prisma/client';
 import { NextFunction, Request, Response, Router } from 'express';
 import prisma from '../../prisma';
 import { FinancialEntryController } from '../controllers';
@@ -14,6 +15,7 @@ export default class FinancialEntryRoute {
 
   constructor() {
     this.financialEntryService = new FinancialEntryService(prisma);
+
     this.financialEntryController = new FinancialEntryController(
       this.financialEntryService
     );
@@ -66,6 +68,34 @@ export default class FinancialEntryRoute {
         },
         async (req: Request, res: Response, next: NextFunction) => {
           await this.financialEntryController.create(req, res, next);
+        }
+      )
+      .put(
+        '/:id',
+        async (req: Request, res: Response, next: NextFunction) => {
+          await new RequestValidationMiddleware(
+            FinancialEntrySchema.id,
+            req.params.id
+          ).validate(req, res, next);
+        },
+        async (req: Request, res: Response, next: NextFunction) => {
+          await new RequestValidationMiddleware(
+            FinancialEntrySchema.amountOptional,
+            req.body.amount
+          ).validate(req, res, next);
+        },
+        async (req: Request, res: Response, next: NextFunction) => {
+          await new RequestValidationMiddleware(
+            FinancialEntrySchema.statusIdOptional,
+            req.body.statusId
+          ).validate(req, res, next);
+        },
+        async (
+          req: Request<{ id: string }, FinancialEntry, Partial<FinancialEntry>>,
+          res: Response,
+          next: NextFunction
+        ) => {
+          await this.financialEntryController.update(req, res, next);
         }
       );
   }

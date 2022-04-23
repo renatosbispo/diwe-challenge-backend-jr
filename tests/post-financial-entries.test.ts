@@ -45,8 +45,7 @@ describe('POST /financial-entries', () => {
         response = await supertest(app)
           .post('/financial-entries')
           .set('Authorization', token)
-          .send(financialEntryData)
-          .expect(201);
+          .send(financialEntryData);
       });
 
       it('Should create a new financial entry and respond with status code 201', async () => {
@@ -63,6 +62,7 @@ describe('POST /financial-entries', () => {
         );
 
         expect(retrievedFinancialEntry?.typeId).toBe(financialEntryData.typeId);
+        expect(response.statusCode).toBe(201);
       });
 
       it('The response body should contain the financial entry data sent in the request', async () => {

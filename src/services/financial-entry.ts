@@ -68,4 +68,27 @@ export default class FinancialEntryService {
 
     return financialEntry;
   }
+
+  public async update(
+    financialEntryId: string,
+    userId: number,
+    newData: Pick<Partial<FinancialEntry>, 'amount' | 'statusId'>
+  ): Promise<FinancialEntry> {
+    await this.getOne(financialEntryId, userId);
+
+    const parsedNewData: { [key: string]: number } = {};
+
+    Object.entries(newData).forEach(([key, value]) => {
+      if (value) {
+        parsedNewData[key] = Number(value);
+      }
+    });
+
+    const updatedFinancialEntry = await this.prisma.financialEntry.update({
+      where: { id: Number(financialEntryId) },
+      data: { ...parsedNewData },
+    });
+
+    return updatedFinancialEntry;
+  }
 }
