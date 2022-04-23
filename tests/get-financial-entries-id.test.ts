@@ -7,7 +7,7 @@ import TypeSeeder from '../prisma/seeders/type';
 import UserSeeder from '../prisma/seeders/user';
 import app from '../src/app';
 
-describe('GET /financial-entries', () => {
+describe('GET /financial-entries/{id}', () => {
   const statusSeeder = new StatusSeeder(prisma);
   const typeSeeder = new TypeSeeder(prisma);
   const userSeeder = new UserSeeder(prisma);
@@ -45,15 +45,40 @@ describe('GET /financial-entries', () => {
         });
     });
 
-    it('Should return only the financial entries of the user with status code 200', async () => {
-      const response = await supertest(app)
-        .get('/financial-entries')
-        .set('Authorization', token)
-        .expect(200);
+    describe('If the params.id is valid', () => {
+      it('Should return only the financial entry of the user that matches the param id with status code 200', async () => {
+        const response = await supertest(app)
+          .get('/financial-entries/4')
+          .set('Authorization', token)
+          .expect(200);
 
-      response.body.forEach((financialEntry: FinancialEntry) =>
-        expect(financialEntry.userId).toBe(1)
-      );
+        const receivedFinancialEntry: FinancialEntry = response.body;
+
+        expect(receivedFinancialEntry.userId).toBe(1);
+        expect(receivedFinancialEntry.id).toBe(4);
+      });
+    });
+
+    describe('If the params.id is valid but does not correspond to an existing entity', () => {
+      it('Should return an error and status code 404', async () => {
+        const response = await supertest(app)
+          .get('/financial-entries/99999')
+          .set('Authorization', token)
+          .expect(404);
+
+        expect(response.body.error).toBeDefined();
+      });
+    });
+
+    describe('If the params.id is invalid', () => {
+      it('Should return an error and status code 422', async () => {
+        const response = await supertest(app)
+          .get('/financial-entries/not-a-number')
+          .set('Authorization', token)
+          .expect(422);
+
+        expect(response.body.error).toBeDefined();
+      });
     });
   });
 });

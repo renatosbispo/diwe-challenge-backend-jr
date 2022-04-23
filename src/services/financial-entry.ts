@@ -46,4 +46,26 @@ export default class FinancialEntryService {
 
     return financialEntries;
   }
+
+  public async getOne(
+    financialEntryId: string,
+    userId: number
+  ): Promise<FinancialEntry | null> {
+    const financialEntry = await this.prisma.financialEntry.findUnique({
+      where: { id: Number(financialEntryId) },
+    });
+
+    if (!financialEntry) {
+      throw new ErrorWithCode('ENTITY_NOT_FOUND', 'Financial entry not found');
+    }
+
+    if (financialEntry?.userId !== userId) {
+      throw new ErrorWithCode(
+        'UNAUTHORIZED_OPERATION',
+        'The requested financial entry does not belong to the user who requested it'
+      );
+    }
+
+    return financialEntry;
+  }
 }

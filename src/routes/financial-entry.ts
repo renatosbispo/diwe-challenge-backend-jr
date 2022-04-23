@@ -22,6 +22,22 @@ export default class FinancialEntryRoute {
       .get('/', async (req: Request, res: Response, next: NextFunction) => {
         await this.financialEntryController.getAll(req, res, next);
       })
+      .get(
+        '/:id',
+        async (req: Request, res: Response, next: NextFunction) => {
+          await new RequestValidationMiddleware(
+            FinancialEntrySchema.id,
+            req.params.id
+          ).validate(req, res, next);
+        },
+        async (
+          req: Request<{ id: string }>,
+          res: Response,
+          next: NextFunction
+        ) => {
+          await this.financialEntryController.getOne(req, res, next);
+        }
+      )
       .post(
         '/',
         async (req: Request, res: Response, next: NextFunction) => {
