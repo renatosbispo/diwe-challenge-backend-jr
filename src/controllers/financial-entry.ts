@@ -35,6 +35,23 @@ export default class FinancialEntryController {
     }
   }
 
+  public async delete(
+    req: Request<{ id: string }>,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const { id: userId } = req.tokenPayload;
+      const { id: financialEntryId } = req.params;
+
+      await this.financialEntryService.delete(financialEntryId, userId);
+
+      res.status(204).end();
+    } catch (error) {
+      next(error);
+    }
+  }
+
   public async getAll(
     req: Request<unknown, FinancialEntry[]>,
     res: Response<FinancialEntry[]>,

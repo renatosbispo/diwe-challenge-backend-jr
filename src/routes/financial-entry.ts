@@ -21,6 +21,22 @@ export default class FinancialEntryRoute {
     );
 
     this.router = Router()
+      .delete(
+        '/:id',
+        async (req: Request, res: Response, next: NextFunction) => {
+          await new RequestValidationMiddleware(
+            FinancialEntrySchema.id,
+            req.params.id
+          ).validate(req, res, next);
+        },
+        async (
+          req: Request<{ id: string }>,
+          res: Response,
+          next: NextFunction
+        ) => {
+          await this.financialEntryController.delete(req, res, next);
+        }
+      )
       .get('/', async (req: Request, res: Response, next: NextFunction) => {
         await this.financialEntryController.getAll(req, res, next);
       })

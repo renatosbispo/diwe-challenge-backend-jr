@@ -39,6 +39,14 @@ export default class FinancialEntryService {
     return financialEntry;
   }
 
+  public async delete(financialEntryId: string, userId: number): Promise<void> {
+    await this.getOne(financialEntryId, userId);
+
+    await this.prisma.financialEntry.delete({
+      where: { id: Number(financialEntryId) },
+    });
+  }
+
   public async getAll(userId: number): Promise<FinancialEntry[]> {
     const financialEntries = await this.prisma.financialEntry.findMany({
       where: { userId },
