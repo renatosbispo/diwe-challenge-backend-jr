@@ -14,7 +14,7 @@ describe('DELETE /financial-entries/{id}', () => {
 
   describe('If token is missing, invalid or expired', () => {
     it('Should return an error and status code 401', async () => {
-      await supertest(app).get('/financial-entries').expect(401);
+      await supertest(app).delete('/financial-entries').expect(401);
     });
   });
 
