@@ -59,23 +59,23 @@ describe('GET /financial-entries/{id}', () => {
       });
     });
 
-    describe('If the params.id is invalid', () => {
-      it('Should return an error and status code 422', async () => {
-        const response = await supertest(app)
-          .get('/financial-entries/not-a-number')
-          .set('Authorization', token)
-          .expect(422);
-
-        expect(response.body.error).toBeDefined();
-      });
-    });
-
     describe('If the params.id is valid but does not correspond to an existing entity', () => {
       it('Should return an error and status code 404', async () => {
         const response = await supertest(app)
           .get('/financial-entries/99999')
           .set('Authorization', token)
           .expect(404);
+
+        expect(response.body.error).toBeDefined();
+      });
+    });
+
+    describe('If the params.id is invalid', () => {
+      it('Should return an error and status code 422', async () => {
+        const response = await supertest(app)
+          .get('/financial-entries/not-a-number')
+          .set('Authorization', token)
+          .expect(422);
 
         expect(response.body.error).toBeDefined();
       });
