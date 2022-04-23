@@ -14,6 +14,7 @@ export default class FinancialEntryRoute {
 
   constructor() {
     this.financialEntryService = new FinancialEntryService(prisma);
+
     this.financialEntryController = new FinancialEntryController(
       this.financialEntryService
     );
