@@ -1,5 +1,6 @@
 import { FinancialEntry } from '@prisma/client';
 import { Request, Response, NextFunction } from 'express';
+import { ITokenPayload } from '../interfaces';
 import { FinancialEntryService } from '../services';
 
 export default class FinancialEntryController {
@@ -30,6 +31,21 @@ export default class FinancialEntryController {
       });
 
       res.status(201).json(financialEntry);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  public async getAll(
+    req: Request<unknown, FinancialEntry[]>,
+    res: Response<FinancialEntry[]>,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const { id } = req.tokenPayload;
+      const financialEntries = await this.financialEntryService.getAll(id);
+
+      res.status(200).json(financialEntries);
     } catch (error) {
       next(error);
     }
