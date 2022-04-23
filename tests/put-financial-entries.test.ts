@@ -62,5 +62,37 @@ describe('PUT /financial-entries/{id}', () => {
         expect(response.statusCode).toBe(200);
       });
     });
+
+    describe('If the params.id is invalid', () => {
+      it('Should return an error and status code 422', async () => {
+        const response = await supertest(app)
+          .put('/financial-entries/not-a-number')
+          .set('Authorization', token)
+          .expect(422);
+
+        expect(response.body.error).toBeDefined();
+      });
+    });
+
+    describe('If the request body contains invalid data', () => {
+      it('Should return an error and status code 422', async () => {
+        const responses = await Promise.all([
+          supertest(app)
+            .put('/financial-entries/1')
+            .set('Authorization', token)
+            .send({ amount: 'string', statusId: 2 })
+            .expect(422),
+          supertest(app)
+            .put('/financial-entries/1')
+            .set('Authorization', token)
+            .send({ amount: 5000000, statusId: 'string' })
+            .expect(422),
+        ]);
+
+        responses.forEach((response) => {
+          expect(response.body.error).toBeDefined();
+        });
+      });
+    });
   });
 });
