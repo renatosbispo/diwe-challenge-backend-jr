@@ -55,6 +55,10 @@ export default class FinancialEntryService {
       where: { id: Number(financialEntryId) },
     });
 
+    if (!financialEntry) {
+      throw new ErrorWithCode('ENTITY_NOT_FOUND', 'Financial entry not found');
+    }
+
     if (financialEntry?.userId !== userId) {
       throw new ErrorWithCode(
         'UNAUTHORIZED_OPERATION',
