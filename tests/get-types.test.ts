@@ -15,13 +15,15 @@ describe('GET /types', () => {
   });
 
   describe('If token is valid', () => {
-    it("Should return a list with the types 'expense' and 'income'", async () => {
+    it("Should return a list with the types 'expense' and 'income' with status code 200", async () => {
       await typeSeeder.seed();
       await userSeeder.seed();
 
       const expectedTypes = await prisma.type.findMany();
 
-      const { body: { token } } = await supertest(app)
+      const {
+        body: { token },
+      } = await supertest(app)
         .post('/login')
         .send({ email: 'tony@soprano.com', password: 'theboss' });
 

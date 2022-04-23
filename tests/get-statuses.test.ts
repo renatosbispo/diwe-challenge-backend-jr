@@ -15,7 +15,7 @@ describe('GET /statuses', () => {
   });
 
   describe('If token is valid', () => {
-    it("Should return a list with the statuses 'paid' and 'unpaid'", async () => {
+    it("Should return a list with the statuses 'paid' and 'unpaid' with status code 200", async () => {
       await statusSeeder.seed();
       await userSeeder.seed();
 
