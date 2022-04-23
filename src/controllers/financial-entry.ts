@@ -69,4 +69,30 @@ export default class FinancialEntryController {
       next(error);
     }
   }
+
+  public async update(
+    req: Request<
+      { id: string },
+      FinancialEntry,
+      Pick<Partial<FinancialEntry>, 'amount' | 'statusId'>
+    >,
+    res: Response<FinancialEntry>,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const { id: userId } = req.tokenPayload;
+      const { id: financialEntryId } = req.params;
+      const { amount, statusId } = req.body;
+
+      const updatedFinancialEntry = await this.financialEntryService.update(
+        financialEntryId,
+        userId,
+        { amount, statusId }
+      );
+
+      res.status(200).json(updatedFinancialEntry);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
