@@ -38,4 +38,12 @@ export default class FinancialEntryService {
 
     return financialEntry;
   }
+
+  public async getAll(userId: number): Promise<FinancialEntry[]> {
+    const financialEntries = await this.prisma.financialEntry.findMany({
+      where: { userId },
+    });
+
+    return financialEntries;
+  }
 }
