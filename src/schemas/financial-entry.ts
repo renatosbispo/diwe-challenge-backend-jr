@@ -9,6 +9,8 @@ export default class FinancialEntrySchema {
 
   public static description = Joi.string().required().label('description');
 
+  public static id = Joi.number().integer().min(1).label('id');
+
   public static statusId = Joi.number()
     .integer()
     .min(1)
