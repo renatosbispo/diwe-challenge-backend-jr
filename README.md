@@ -35,7 +35,8 @@ for the project to allow for the tracking of its progress.
   - [Manually](#manually)
   - [Automated](#automated)
 - [Acknowledgments](#acknowledgments)
-- [License](#acknowledgments#license)
+  - [DIWE](#diwe)
+- [License](#license)
 
 ## Problem Domain
 
@@ -279,7 +280,7 @@ This should also populate the database with the same data from when you ran `npm
 
 ### Manually
 
-You can use [**this Insomnia collection**](assets/insomnia-diwe-backend-jr-challenge.json) to manually test the endpoints. It also serves as the best current documentation for the API.
+You can use [**this Insomnia collection**](assets/insomnia-diwe-backend-jr-challenge.json) to manually test the endpoints. It also serves as the best current documentation for the API. You can [learn more](https://docs.insomnia.rest/insomnia/import-export-data#import-data) about how to import the collection at Insomnia's website.
 
 :warning: **Make sure to setup the collection environment:**
 
@@ -296,9 +297,11 @@ npm test
 
 (The project currently uses [Jest](https://jestjs.io/) as the test runner and [SuperTest](https://www.npmjs.com/package/supertest) for testing the requests.)
 
-These are not yet covering every possible edge case, so I would recommend using the manual testing method.
+These are not yet covering every possible edge case. The request collection is more comprehensive in that sense.
 
 ## Acknowledgments
+
+### DIWE
 
 The fine people at [**DIWE**](https://diwe.com.br/) gave me **explicit permission** to host this project on a public repository so I could include it in my portfolio. For that alone, and regardless of the result of this selection process, I would like to express my profound gratitude, especially to [Maicon](https://www.linkedin.com/in/maicon-gracioli-passos-02849438/) and [MV](https://www.linkedin.com/in/mvbassalobre/).
 
