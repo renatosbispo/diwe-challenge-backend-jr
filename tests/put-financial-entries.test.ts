@@ -44,7 +44,7 @@ describe('PUT /financial-entries/{id}', () => {
 
       beforeEach(async () => {
         response = await supertest(app)
-          .post('/financial-entries/1')
+          .put('/financial-entries/1')
           .set('Authorization', token)
           .send(newFinancialEntryData);
       });
@@ -53,7 +53,7 @@ describe('PUT /financial-entries/{id}', () => {
         const receivedFinancialEntry: FinancialEntry = response.body;
 
         expect(receivedFinancialEntry.userId).toBe(1);
-        expect(receivedFinancialEntry.id).toBe(4);
+        expect(receivedFinancialEntry.id).toBe(1);
 
         expect(receivedFinancialEntry.amount).toBe(
           newFinancialEntryData.amount
