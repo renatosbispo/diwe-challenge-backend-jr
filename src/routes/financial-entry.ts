@@ -18,35 +18,39 @@ export default class FinancialEntryRoute {
       this.financialEntryService
     );
 
-    this.router = Router().post(
-      '/',
-      async (req: Request, res: Response, next: NextFunction) => {
-        await new RequestValidationMiddleware(
-          FinancialEntrySchema.amount,
-          req.body.amount
-        ).validate(req, res, next);
-      },
-      async (req: Request, res: Response, next: NextFunction) => {
-        await new RequestValidationMiddleware(
-          FinancialEntrySchema.description,
-          req.body.description
-        ).validate(req, res, next);
-      },
-      async (req: Request, res: Response, next: NextFunction) => {
-        await new RequestValidationMiddleware(
-          FinancialEntrySchema.statusId,
-          req.body.statusId
-        ).validate(req, res, next);
-      },
-      async (req: Request, res: Response, next: NextFunction) => {
-        await new RequestValidationMiddleware(
-          FinancialEntrySchema.typeId,
-          req.body.typeId
-        ).validate(req, res, next);
-      },
-      async (req: Request, res: Response, next: NextFunction) => {
-        await this.financialEntryController.create(req, res, next);
-      }
-    );
+    this.router = Router()
+      .get('/', async (req: Request, res: Response, next: NextFunction) => {
+        await this.financialEntryController.getAll(req, res, next);
+      })
+      .post(
+        '/',
+        async (req: Request, res: Response, next: NextFunction) => {
+          await new RequestValidationMiddleware(
+            FinancialEntrySchema.amount,
+            req.body.amount
+          ).validate(req, res, next);
+        },
+        async (req: Request, res: Response, next: NextFunction) => {
+          await new RequestValidationMiddleware(
+            FinancialEntrySchema.description,
+            req.body.description
+          ).validate(req, res, next);
+        },
+        async (req: Request, res: Response, next: NextFunction) => {
+          await new RequestValidationMiddleware(
+            FinancialEntrySchema.statusId,
+            req.body.statusId
+          ).validate(req, res, next);
+        },
+        async (req: Request, res: Response, next: NextFunction) => {
+          await new RequestValidationMiddleware(
+            FinancialEntrySchema.typeId,
+            req.body.typeId
+          ).validate(req, res, next);
+        },
+        async (req: Request, res: Response, next: NextFunction) => {
+          await this.financialEntryController.create(req, res, next);
+        }
+      );
   }
 }
