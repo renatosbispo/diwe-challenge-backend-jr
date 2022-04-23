@@ -13,24 +13,27 @@ for the project to allow for the tracking of its progress.
 
 ## Table of Contents
 
-- [Problem Domain](https://github.com/renatosbispo/diwe-challenge-backend-jr#problem-domain)
-- [Database Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#database-structure)
-  - [Suggested Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#suggested-structure)
-  - [My Interpretation of the Structure](https://github.com/renatosbispo/diwe-challenge-backend-jr#my-interpretation-of-the-structure)
-  - [Normalization](https://github.com/renatosbispo/diwe-challenge-backend-jr#normalization)
-  - [Additional Considerations](https://github.com/renatosbispo/diwe-challenge-backend-jr#additional-considerations)
-- [Project Decisions](https://github.com/renatosbispo/diwe-challenge-backend-jr#project-decisions)
-  - [Architecture](https://github.com/renatosbispo/diwe-challenge-backend-jr#architecture)
-  - [Practices](https://github.com/renatosbispo/diwe-challenge-backend-jr#practices)
-  - [Database](https://github.com/renatosbispo/diwe-challenge-backend-jr#database)
-  - [Technologies](https://github.com/renatosbispo/diwe-challenge-backend-jr#technologies)
-- [Setup](https://github.com/renatosbispo/diwe-challenge-backend-jr#setup)
-  - [Requirements](https://github.com/renatosbispo/diwe-challenge-backend-jr#requirements)
-  - [Suggestions](https://github.com/renatosbispo/diwe-challenge-backend-jr#suggestions)
-- [Usage (coming soon)](https://github.com/renatosbispo/diwe-challenge-backend-jr#usage)
-- [Testing (coming soon)](https://github.com/renatosbispo/diwe-challenge-backend-jr#testing)
-- [Acknowledgments](https://github.com/renatosbispo/diwe-challenge-backend-jr#acknowledgments)
-- [License](https://github.com/renatosbispo/diwe-challenge-backend-jr#acknowledgments#license)
+- [Problem Domain](#problem-domain)
+- [Database Structure](#database-structure)
+  - [Suggested Structure](#suggested-structure)
+  - [My Interpretation of the Structure](#my-interpretation-of-the-structure)
+  - [Normalization](#normalization)
+  - [Additional Considerations](#additional-considerations)
+- [Project Decisions](#project-decisions)
+  - [Architecture](#architecture)
+  - [Practices](#practices)
+  - [Database](#database)
+  - [Technologies](#technologies)
+- [Setup](#setup)
+  - [Requirements](#requirements)
+  - [Suggestions](#suggestions)
+  - [Installation](#installation)
+- [Usage](#usage)
+  - [Running](#running)
+  - [Resetting the Database](#resetting-the-database)
+- [Testing (coming soon)](#testing)
+- [Acknowledgments](#acknowledgments)
+- [License](#acknowledgments#license)
 
 ## Problem Domain
 
@@ -173,7 +176,7 @@ The API follows a three-layer architecture (not three-tier exactly, as this is m
 
 ### Technologies
 
-:warning: **Note**: this is not a comprehensive list, more of a highlight.
+:warning: **This is not a comprehensive list, it's more of a highlight.**
 
 - [**Node.js**](https://nodejs.org): because it's the ecosystem where I have the most experience
 - [**Typescript**](https://www.typescriptlang.org/): for preventing a lot of bugs even before the application runs
@@ -199,11 +202,76 @@ Make sure you have the following tools installed and properly configured:
 ### Suggestions
 
 If you use [VSCode](https://code.visualstudio.com/) as an editor, I highly suggest you install the [**Prisma extension**](https://marketplace.visualstudio.com/items?itemName=Prisma.prisma), which:
+
 > Adds syntax highlighting, formatting, auto-completion, jump-to-definition and linting for .prisma files.
+
+### Installation
+
+After you make sure you have the proper setup, follow these steps:
+
+**1.** Clone this repository and navigate to its directory:
+
+```
+git clone git@github.com:renatosbispo/diwe-challenge-backend-jr.git
+```
+
+**2.** Use the file [**.env.example**](.env.example) as a reference to create and fill **two** `.env` files:
+
+- `.env.dev`
+- `.env.test`
+
+:warning: **Important notices:**
+
+- You **HAVE** to create both and fill **all** the **empty** variables
+- `DEV_DB_PORT` and `TEST_DB_PORT` **MUST** be different from each other **and from the port reserved to your local MySQL server** if you have one
+- **DO NOT** alter the `DATABASE_URL` unless you know what you are doing
+- The remaining variables can receive any value you like.
+
+**3.** Install the dependencies:
+
+```
+npm install
+```
+
+**4.** Setup the databases:
+
+```
+npm run compose:up
+```
+
+This will create two Docker containers running the same **MySQL** server version, as specified in the [**docker-compose.yml**](docker-compose.yml) file. One of them is for **development** (this one will preserve its data as long as you don't remove its [volume](https://docs.docker.com/storage/volumes/)) and the other one is for **testing**.
+
+:warning: **Wait until the databases are ready to receive connections before continuing.**
+
+**5.** Run the migrations and seed the development database:
+
+```
+npm run migrate
+```
+
+This will create the **development** database and should also populate it with some data. If the seeding doesn't happen automatically, you can also do it manually with `npm run seed`.
 
 ## Usage
 
-Coming soon.
+:warning: **Make sure you've gone through the setup in the previous section before moving on.**
+
+### Running
+
+Run the application (using [ts-node-dev](https://www.npmjs.com/package/ts-node-dev)):
+
+```
+npm run dev
+```
+
+### Resetting the Database
+
+You can reset the **development** database to its initial state by running the following command:
+
+```
+npm run migrate:reset
+```
+
+This should also populate the database with the same data from when you ran `npm run migrate`.
 
 ## Testing
 
