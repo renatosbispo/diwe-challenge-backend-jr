@@ -31,7 +31,9 @@ for the project to allow for the tracking of its progress.
 - [Usage](#usage)
   - [Running](#running)
   - [Resetting the Database](#resetting-the-database)
-- [Testing (coming soon)](#testing)
+- [Testing](#testing)
+  - [Manually](#manually)
+  - [Automated](#automated)
 - [Acknowledgments](#acknowledgments)
 - [License](#acknowledgments#license)
 
@@ -275,7 +277,26 @@ This should also populate the database with the same data from when you ran `npm
 
 ## Testing
 
-Coming soon.
+### Manually
+
+You can use [**this Insomnia collection**](assets/insomnia-diwe-backend-jr-challenge.json) to manually test the endpoints. It also serves as the best current documentation for the API.
+
+:warning: **Make sure to setup the collection environment:**
+
+- Set `baseUrl` to the proper address and port as defined in your `.env.dev` file
+- Send the request `POST /login` / `Valid credentials` to receive a valid token and add it to the `validToken` variable in the collection environment. **This variable is used to send the requests to the protected endpoints (all but `/POST login`).** The token expires in **one hour**.
+
+### Automated
+
+You can also run automated integration tests:
+
+```
+npm test
+```
+
+(The project currently uses [Jest](https://jestjs.io/) as the test runner and [SuperTest](https://www.npmjs.com/package/supertest) for testing the requests.)
+
+These are not yet covering every possible edge case, so I would recommend using the manual testing method.
 
 ## Acknowledgments
 
