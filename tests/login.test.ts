@@ -32,7 +32,7 @@ describe('POST /login', () => {
           .expect(401);
 
         expect(response.body.error).toBeDefined();
-        expect(response.body.error).toBe(expectedErrorMessage);
+        expect(response.body.error.message).toBe(expectedErrorMessage);
       });
     });
 
@@ -48,7 +48,7 @@ describe('POST /login', () => {
           .expect(401);
 
         expect(response.body.error).toBeDefined();
-        expect(response.body.error).toBe(expectedErrorMessage);
+        expect(response.body.error.message).toBe(expectedErrorMessage);
       });
     });
   });
