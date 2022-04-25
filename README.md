@@ -13,6 +13,16 @@ for the project to allow for the tracking of its progress.
 
 ## Table of Contents
 
+- [Setup](#setup)
+  - [Requirements](#requirements)
+  - [Recommendations](#recommendations)
+  - [Installation](#installation)
+- [Usage](#usage)
+  - [Running](#running)
+  - [Resetting the Database](#resetting-the-database)
+- [Testing](#testing)
+  - [Manually](#manually)
+  - [Automated](#automated)
 - [Problem Domain](#problem-domain)
 - [Database Structure](#database-structure)
   - [Suggested Structure](#suggested-structure)
@@ -24,19 +34,121 @@ for the project to allow for the tracking of its progress.
   - [Practices](#practices)
   - [Database](#database)
   - [Technologies](#technologies)
-- [Setup](#setup)
-  - [Requirements](#requirements)
-  - [Suggestions](#suggestions)
-  - [Installation](#installation)
-- [Usage](#usage)
-  - [Running](#running)
-  - [Resetting the Database](#resetting-the-database)
-- [Testing](#testing)
-  - [Manually](#manually)
-  - [Automated](#automated)
 - [Acknowledgments](#acknowledgments)
   - [DIWE](#diwe)
 - [License](#license)
+
+## Setup
+
+### Requirements
+
+Make sure you have the following tools installed and properly configured:
+
+- [**Node.js**](https://nodejs.org/en/) (16.14.2)
+- [**Docker**](https://www.docker.com/get-started/) (20.10.14)
+- [**Docker Compose**](https://docs.docker.com/compose/install/) (2.2.2)
+- [**Insomnia**](https://insomnia.rest/download) (2021.7.2)
+  - In one of the sections that follow, I provide an **Insomnia collection** to **manually test the API** and also to serve as a **documentation** for it. If you can find a way to import this collection into **Postman**, that's great! But I'm not sure how well the structure of the collection will hold, which is why I decided to list **Insomnia as a requirement** rather than a suggestion.
+
+**Notice:** the **version numbers in parenthesis** are the ones I used during development, but that doesn't necessarily mean it won't work with different versions.
+
+### Recommendations
+
+If you use [VSCode](https://code.visualstudio.com/) as an editor, I highly suggest you install the [**Prisma extension**](https://marketplace.visualstudio.com/items?itemName=Prisma.prisma), which:
+
+> Adds syntax highlighting, formatting, auto-completion, jump-to-definition and linting for .prisma files.
+
+### Installation
+
+After you make sure you have the proper setup, follow these steps:
+
+**1.** Clone this repository and navigate to its directory:
+
+```
+git clone git@github.com:renatosbispo/diwe-challenge-backend-jr.git
+```
+
+**2.** Use the file [**.env.example**](.env.example) as a reference to create and fill **two** `.env` files:
+
+- `.env.dev`
+- `.env.test`
+
+:warning: **Important notices:**
+
+- You **HAVE** to create both and fill **all** the **empty** variables
+- `DEV_DB_PORT` and `TEST_DB_PORT` **MUST** be different from each other **and from the port reserved to your local MySQL server** if you have one
+- **DO NOT** alter the `DATABASE_URL` unless you know what you are doing
+- The remaining variables can receive any value you like.
+
+**3.** Install the dependencies:
+
+```
+npm install
+```
+
+**4.** Setup the databases:
+
+```
+npm run compose:up
+```
+
+This will create two Docker containers running the same **MySQL** server version, as specified in the [**docker-compose.yml**](docker-compose.yml) file. One of them is for **development** (this one will preserve its data as long as you don't remove its [volume](https://docs.docker.com/storage/volumes/)) and the other one is for **testing**.
+
+:warning: **Wait until the databases are ready to receive connections before continuing.**
+
+**5.** Run the migrations and seed the development database:
+
+```
+npm run migrate
+```
+
+This will create the **development** database and should also populate it with some data. If the seeding doesn't happen automatically, you can also do it manually with `npm run seed`.
+
+## Usage
+
+:warning: **Make sure you've gone through the setup in the previous section before moving on.**
+
+### Running
+
+Run the application (using [ts-node-dev](https://www.npmjs.com/package/ts-node-dev)):
+
+```
+npm run dev
+```
+
+### Resetting the Database
+
+You can reset the **development** database to its initial state by running the following command:
+
+```
+npm run migrate:reset
+```
+
+This should also populate the database with the same data from when you ran `npm run migrate`.
+
+## Testing
+
+### Manually
+
+You can use [**this Insomnia collection**](assets/insomnia-diwe-backend-jr-challenge.json) to manually test the endpoints. It also serves as the best current documentation for the API. You can learn more about [how to import the collection](https://docs.insomnia.rest/insomnia/import-export-data#import-data) at Insomnia's website.
+
+:warning: **Make sure to setup the [collection environment](https://docs.insomnia.rest/insomnia/environment-variables/):**
+
+- Set `baseUrl` to the proper address and port as defined in your `.env.dev` file
+- Send the request `POST /login` / `Valid credentials` to receive a valid token and add it to the `validToken` variable in the collection environment. **This variable is used to send the requests to the protected endpoints (all but `/POST login`).** The token expires in **one hour**.
+- When setting the `validToken` variable, **DO NOT** use the `Bearer` prefix, set the value to the token only.
+
+### Automated
+
+You can also run automated integration tests:
+
+```
+npm test
+```
+
+(The project currently uses [Jest](https://jestjs.io/) as the test runner and [SuperTest](https://www.npmjs.com/package/supertest) for testing the requests.)
+
+These are not yet covering every possible edge case. The request collection is more comprehensive in that sense.
 
 ## Problem Domain
 
@@ -98,7 +210,7 @@ The challenge specification described the following entities and their attribute
 
 It's quite obvious what the entities `User` and `Financial Entry` represent. However, that's not the case for the entities `Status` and `Type`, at least not at first glance.
 
-So based on the research I did and on the approach I took (as described in the [Problem Domain](https://github.com/renatosbispo/diwe-challenge-backend-jr#problem-domain) section), I decided to interpret `Status` as being one of two possible values, `paid` or `unpaid`, while `Type` as being either `income` or `expense`.
+So based on the research I did and on the approach I took (as described in the [Problem Domain](#problem-domain) section), I decided to interpret `Status` as being one of two possible values, `paid` or `unpaid`, while `Type` as being either `income` or `expense`.
 
 This seems to fit well within the context of a personal finance management platform and doesn't overcomplicate the problem.
 
@@ -187,117 +299,6 @@ The API follows a three-layer architecture (not three-tier exactly, as this is m
 - [**Express.js**](https://expressjs.com/pt-br/): because it's the framework I'm most familiar with
 - [**Helmet.js**](https://helmetjs.github.io/): an Express middleware that sets multiple HTTP headers for additional security
 - [**Docker/Docker Compose**](https://docker.com/): to simplify the database setup.
-
-## Setup
-
-### Requirements
-
-Make sure you have the following tools installed and properly configured:
-
-- [**Node.js**](https://nodejs.org/en/) (16.14.2)
-- [**Docker**](https://www.docker.com/get-started/) (20.10.14)
-- [**Docker Compose**](https://docs.docker.com/compose/install/) (2.2.2)
-- [**Insomnia**](https://insomnia.rest/download) (2021.7.2)
-  - In one of the sections that follow, I provide an **Insomnia collection** to **manually test the API** and also to serve as a **documentation** for it. If you can find a way to import this collection into **Postman**, that's great! But I'm not sure how well the structure of the collection will hold, which is why I decided to list **Insomnia as a requirement** rather than a suggestion.
-
-**Notice:** the **version numbers in parenthesis** are the ones I used during development, but that doesn't necessarily mean it won't work with different versions.
-
-### Suggestions
-
-If you use [VSCode](https://code.visualstudio.com/) as an editor, I highly suggest you install the [**Prisma extension**](https://marketplace.visualstudio.com/items?itemName=Prisma.prisma), which:
-
-> Adds syntax highlighting, formatting, auto-completion, jump-to-definition and linting for .prisma files.
-
-### Installation
-
-After you make sure you have the proper setup, follow these steps:
-
-**1.** Clone this repository and navigate to its directory:
-
-```
-git clone git@github.com:renatosbispo/diwe-challenge-backend-jr.git
-```
-
-**2.** Use the file [**.env.example**](.env.example) as a reference to create and fill **two** `.env` files:
-
-- `.env.dev`
-- `.env.test`
-
-:warning: **Important notices:**
-
-- You **HAVE** to create both and fill **all** the **empty** variables
-- `DEV_DB_PORT` and `TEST_DB_PORT` **MUST** be different from each other **and from the port reserved to your local MySQL server** if you have one
-- **DO NOT** alter the `DATABASE_URL` unless you know what you are doing
-- The remaining variables can receive any value you like.
-
-**3.** Install the dependencies:
-
-```
-npm install
-```
-
-**4.** Setup the databases:
-
-```
-npm run compose:up
-```
-
-This will create two Docker containers running the same **MySQL** server version, as specified in the [**docker-compose.yml**](docker-compose.yml) file. One of them is for **development** (this one will preserve its data as long as you don't remove its [volume](https://docs.docker.com/storage/volumes/)) and the other one is for **testing**.
-
-:warning: **Wait until the databases are ready to receive connections before continuing.**
-
-**5.** Run the migrations and seed the development database:
-
-```
-npm run migrate
-```
-
-This will create the **development** database and should also populate it with some data. If the seeding doesn't happen automatically, you can also do it manually with `npm run seed`.
-
-## Usage
-
-:warning: **Make sure you've gone through the setup in the previous section before moving on.**
-
-### Running
-
-Run the application (using [ts-node-dev](https://www.npmjs.com/package/ts-node-dev)):
-
-```
-npm run dev
-```
-
-### Resetting the Database
-
-You can reset the **development** database to its initial state by running the following command:
-
-```
-npm run migrate:reset
-```
-
-This should also populate the database with the same data from when you ran `npm run migrate`.
-
-## Testing
-
-### Manually
-
-You can use [**this Insomnia collection**](assets/insomnia-diwe-backend-jr-challenge.json) to manually test the endpoints. It also serves as the best current documentation for the API. You can [learn more](https://docs.insomnia.rest/insomnia/import-export-data#import-data) about how to import the collection at Insomnia's website.
-
-:warning: **Make sure to setup the collection environment:**
-
-- Set `baseUrl` to the proper address and port as defined in your `.env.dev` file
-- Send the request `POST /login` / `Valid credentials` to receive a valid token and add it to the `validToken` variable in the collection environment. **This variable is used to send the requests to the protected endpoints (all but `/POST login`).** The token expires in **one hour**.
-
-### Automated
-
-You can also run automated integration tests:
-
-```
-npm test
-```
-
-(The project currently uses [Jest](https://jestjs.io/) as the test runner and [SuperTest](https://www.npmjs.com/package/supertest) for testing the requests.)
-
-These are not yet covering every possible edge case. The request collection is more comprehensive in that sense.
 
 ## Acknowledgments
 
